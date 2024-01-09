@@ -34,8 +34,8 @@ typedef struct
 {
 	uint32_t data_length;
 	float    *data;
-} acc_vector_float_t;
 
+} acc_vector_float_t;
 
 /**
  * @brief Allocate storage for an IQ vector

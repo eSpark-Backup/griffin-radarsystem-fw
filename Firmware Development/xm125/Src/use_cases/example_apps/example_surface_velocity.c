@@ -27,6 +27,9 @@
 
 #define SENSOR_ID (1U)
 
+#define HOURS_TO_SEC (float)(3600)
+#define KM_TO_M   (float)(1000)
+
 #define SWEEPS_PER_FRAME 512
 #define PI (3.14159265358979323846f)
 
@@ -128,23 +131,24 @@ int acconeer_main(int argc, char *argv[])
 		acc_vector_iq_fft_inline(fft_vector);
 		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
 
-		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes);
+		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
 
 		float speed;
 		if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
 		{
-			speed = (max_magnitude_index - SWEEPS_PER_FRAME) * speed_step_kmh;
+			speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
 		}
 		else
 		{
-			speed = max_magnitude_index * speed_step_kmh;
+			speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
 		}
 
-		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
+		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " m/s mag:: %f\n" ,
 			   max_magnitude_index,
 			   ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
-			   ACC_LOG_FLOAT_TO_INTEGER(speed));
-//		HAL_Delay(200);
+			   ACC_LOG_FLOAT_TO_INTEGER(speed),
+			   fft_magnitudes->data[max_magnitude_index]);
+		HAL_Delay(20);
 	}
 
 clean_up:
@@ -191,6 +195,7 @@ static void acc_vector_iq_init_hanning_window(acc_vector_iq_t *vector_iq)
 	for (uint32_t i = 0; i < n; i++)
 	{
 		vector_iq->data[i] = 0.5f - 0.5f * cosf(2 * PI * i / (n - 1.0f));
+//		printf("Data[%d]: %f + %fi\n", i, crealf(vector_iq->data[i]), cimagf(vector_iq->data[i]));
 	}
 }
 
@@ -208,6 +213,7 @@ static void acc_vector_iq_subtract_mean_inline(acc_vector_iq_t *vector_iq)
 	for (uint32_t i = 0; i < vector_iq->data_length; i++)
 	{
 		vector_iq->data[i] -= mean;
+//		printf("Data[%d] - mean : %f + %fi\n", i, crealf(vector_iq->data[i]), cimagf(vector_iq->data[i]));
 	}
 }
 
