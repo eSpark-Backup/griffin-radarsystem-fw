@@ -1,6 +1,7 @@
-../Src/use_cases/example_apps/example_surface_velocity.c:48:5:acconeer_main	392	static
-../Src/use_cases/example_apps/example_surface_velocity.c:172:13:update_configuration	24	static
-../Src/use_cases/example_apps/example_surface_velocity.c:191:13:acc_vector_iq_init_hanning_window	24	static
-../Src/use_cases/example_apps/example_surface_velocity.c:202:13:acc_vector_iq_subtract_mean_inline	56	static
-../Src/use_cases/example_apps/example_surface_velocity.c:220:13:acc_vector_iq_fft_inline	16	static
-../Src/use_cases/example_apps/example_surface_velocity.c:230:13:fft_inline	176	static
+../Src/use_cases/example_apps/example_surface_velocity.c:48:13:welch	112	static
+../Src/use_cases/example_apps/example_surface_velocity.c:107:5:acconeer_main	392	static
+../Src/use_cases/example_apps/example_surface_velocity.c:249:13:update_configuration	24	static
+../Src/use_cases/example_apps/example_surface_velocity.c:268:13:acc_vector_iq_init_hanning_window	24	static
+../Src/use_cases/example_apps/example_surface_velocity.c:279:13:acc_vector_iq_subtract_mean_inline	56	static
+../Src/use_cases/example_apps/example_surface_velocity.c:297:13:acc_vector_iq_fft_inline	16	static
+../Src/use_cases/example_apps/example_surface_velocity.c:309:13:fft_inline	176	static

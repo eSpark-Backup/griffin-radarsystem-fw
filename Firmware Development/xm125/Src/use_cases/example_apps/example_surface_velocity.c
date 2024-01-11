@@ -45,6 +45,65 @@ static void acc_vector_iq_subtract_mean_inline(acc_vector_iq_t *vector_iq);
 
 int acconeer_main(int argc, char *argv[]);
 
+static void welch(const float complex *data,
+                  uint16_t            data_length,
+                  uint16_t            segment_length,
+                  float complex       *data_buffer,
+                  float complex       *fft_out,
+                  float               *psd,
+                  const float         *window,
+                  uint16_t            length_shift,
+                  float               fs,
+                  uint16_t            stride)
+{
+	uint16_t num_segments = data_length / segment_length;
+	float    scale        = 0.0f;
+
+	for (uint16_t i = 0U; i < num_segments; i++)
+	{
+		scale = 0.0f;
+		float complex mean = 0.0f;
+
+		for (uint16_t j = 0U; j < segment_length; j++)
+		{
+			mean += data[(i * segment_length * stride) + (j * stride)];
+		}
+
+		float complex adj_mean_real = crealf(mean) / (float)segment_length;
+		float complex adj_mean_imag = cimagf(mean) / (float)segment_length;
+		mean = adj_mean_real + (adj_mean_imag * I);
+
+		for (uint16_t j = 0U; j < segment_length; j++)
+		{
+			data_buffer[j] = data[(i * segment_length * stride) + (j * stride)] - mean;
+
+			float complex adj_buf_real = crealf(data_buffer[j]) * window[j];
+			float complex adj_buf_imag = cimagf(data_buffer[j]) * window[j];
+			data_buffer[j] = adj_buf_real + (adj_buf_imag * I);
+
+			scale += window[j] * window[j];
+		}
+
+		acc_algorithm_fft(data_buffer, segment_length, length_shift, fft_out);
+
+		for (uint16_t j = 0U; j < segment_length; j++)
+		{
+			psd[j * stride] += cabsf(fft_out[j]) *
+			                   cabsf(fft_out[j]);
+		}
+	}
+
+	if (scale != 0.0f)
+	{
+		scale = 1.0f / (scale * fs * (float)num_segments);
+	}
+
+	for (uint16_t i = 0U; i < segment_length; i++)
+	{
+		psd[i * stride] *= scale;
+	}
+}
+
 int acconeer_main(int argc, char *argv[])
 {
 	(void)argc;
@@ -87,6 +146,12 @@ int acconeer_main(int argc, char *argv[])
 	acc_vector_iq_t *fft_vector = acc_vector_iq_alloc(point_vector_length);
 	acc_vector_iq_t *hanning_window = acc_vector_iq_alloc(point_vector_length);
 	acc_vector_float_t *fft_magnitudes = acc_vector_float_alloc(point_vector_length);
+	acc_vector_float_t *mHannWindow = acc_vector_uint32_alloc(point_vector_length);
+
+//	acc_vector_iq_t *fFT = acc_vector_iq_alloc(point_vector_length);
+//	acc_vector_iq_t *dataBuffer = acc_vector_iq_alloc(point_vector_length);
+//	acc_vector_float_t *windowMagnitude = acc_vector_float_alloc(point_vector_length);
+
 
 	bool mem_ok = (point_vector != NULL) && (fft_vector != NULL) && (hanning_window != NULL);
 	if (!mem_ok)
@@ -96,6 +161,9 @@ int acconeer_main(int argc, char *argv[])
 	}
 
 	acc_vector_iq_init_hanning_window(hanning_window);
+
+//	acc_vector_iq_amplitude(hanning_window,windowMagnitude);
+
 
 	uint32_t sweep_rate = control_helper_state.proc_meta.max_sweep_rate;
 
@@ -124,7 +192,16 @@ int acconeer_main(int argc, char *argv[])
 			break;
 		}
 
+//		float psd[512] = {0};
 		acc_get_iq_point_vector(&control_helper_state, 0, point_vector);
+
+//		welch(point_vector->data, point_vector->data_length , 128 , dataBuffer->data , fFT->data , psd, windowMagnitude, 10 , 10 ,10);
+//
+//		// Print PSD values
+//		printf("PSD values:\n");
+//		for (uint16_t i = 0U; i < point_vector->data_length; i++) {
+//		    printf("PSD[%u]: %f\n", i, psd[i]);
+//		}
 
 		acc_vector_iq_subtract_mean_inline(point_vector);
 		acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
@@ -225,6 +302,8 @@ static void acc_vector_iq_fft_inline(acc_vector_iq_t *vector_iq)
 	assert((vector_iq->data_length & (vector_iq->data_length - 1)) == 0); // Length must be a power of two
 
 	fft_inline(vector_iq->data, 1, vector_iq->data_length);
+
+
 }
 
 static void fft_inline(complex float *z, uint32_t stride, uint32_t n)

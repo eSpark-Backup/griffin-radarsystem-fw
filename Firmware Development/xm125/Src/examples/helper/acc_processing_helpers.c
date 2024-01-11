@@ -69,6 +69,28 @@ acc_vector_float_t *acc_vector_float_alloc(uint32_t data_length)
 	return vector_float;
 }
 
+acc_vector_uint32_t *acc_vector_uint32_alloc(uint32_t data_length)
+{
+    acc_vector_uint32_t *vector_uint32 = malloc(sizeof(acc_vector_uint32_t));
+
+    if (vector_uint32 == NULL)
+    {
+        return NULL;
+    }
+
+    vector_uint32->data = malloc(data_length * sizeof(uint32_t));
+
+    if (vector_uint32->data == NULL)
+    {
+        free(vector_uint32);
+        return NULL;
+    }
+
+    vector_uint32->data_length = data_length;
+
+    return vector_uint32;
+}
+
 
 void acc_vector_iq_free(acc_vector_iq_t *vector)
 {
@@ -159,6 +181,7 @@ void acc_get_iq_point_vector(const acc_control_helper_t *control_helper_state, u
 	{
 		acc_int16_complex_t iq = control_helper_state->proc_result.frame[point + i * control_helper_state->proc_meta.sweep_data_length];
 		vector_out->data[i] = iq.real + iq.imag * I;
+
 	}
 }
 
@@ -309,6 +332,8 @@ void acc_vector_iq_amplitude(const acc_vector_iq_t *vector_a, acc_vector_float_t
 	for (uint32_t i = 0; i < vector_a->data_length; i++)
 	{
 		vector_out->data[i] = cabsf(vector_a->data[i]);
+//		printf("Data[%d] - mean : %f\n", i, vector_out->data[i]);
+
 	}
 }
 
