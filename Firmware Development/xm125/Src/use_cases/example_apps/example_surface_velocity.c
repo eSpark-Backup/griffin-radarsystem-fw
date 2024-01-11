@@ -146,10 +146,10 @@ int acconeer_main(int argc, char *argv[])
 	acc_vector_iq_t *fft_vector = acc_vector_iq_alloc(point_vector_length);
 	acc_vector_iq_t *hanning_window = acc_vector_iq_alloc(point_vector_length);
 	acc_vector_float_t *fft_magnitudes = acc_vector_float_alloc(point_vector_length);
-	acc_vector_float_t *mHannWindow = acc_vector_uint32_alloc(point_vector_length);
+	acc_vector_uint32_t *mHannWindow = acc_vector_uint32_alloc(point_vector_length);
 
-//	acc_vector_iq_t *fFT = acc_vector_iq_alloc(point_vector_length);
-//	acc_vector_iq_t *dataBuffer = acc_vector_iq_alloc(point_vector_length);
+	acc_vector_iq_t *fFT = acc_vector_iq_alloc(point_vector_length);
+	acc_vector_iq_t *dataBuffer = acc_vector_iq_alloc(point_vector_length);
 //	acc_vector_float_t *windowMagnitude = acc_vector_float_alloc(point_vector_length);
 
 
@@ -161,8 +161,12 @@ int acconeer_main(int argc, char *argv[])
 	}
 
 	acc_vector_iq_init_hanning_window(hanning_window);
+	acc_algorithm_hann(point_vector_length, mHannWindow->data); // function surface velocity ki example se use kiya hai window nikaalne k liye
+//    for(int i = 0; i < point_vector_length ; i++)
+//    {
+//    	printf("Hann Window: %d\n ",mHannWindow->data[i]);
+//    }
 
-//	acc_vector_iq_amplitude(hanning_window,windowMagnitude);
 
 
 	uint32_t sweep_rate = control_helper_state.proc_meta.max_sweep_rate;
@@ -192,39 +196,40 @@ int acconeer_main(int argc, char *argv[])
 			break;
 		}
 
-//		float psd[512] = {0};
+		float psd[128] = {0};
 		acc_get_iq_point_vector(&control_helper_state, 0, point_vector);
 
-//		welch(point_vector->data, point_vector->data_length , 128 , dataBuffer->data , fFT->data , psd, windowMagnitude, 10 , 10 ,10);
+		welch(point_vector->data, point_vector->data_length , 512 , dataBuffer->data , fFT->data , psd, mHannWindow, 512 , (float)sweep_rate , 8);
 //
 //		// Print PSD values
-//		printf("PSD values:\n");
-//		for (uint16_t i = 0U; i < point_vector->data_length; i++) {
-//		    printf("PSD[%u]: %f\n", i, psd[i]);
+		printf("PSD values:\n");
+		for (uint16_t i = 0U; i < point_vector->data_length; i++)
+		{
+		    printf("PSD[%u]: %f\n", i, psd[i]);
+		}
+
+//		acc_vector_iq_subtract_mean_inline(point_vector);
+//		acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
+//		acc_vector_iq_fft_inline(fft_vector);
+//		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
+//
+//		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
+
+//		float speed;
+//		if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
+//		{
+//			speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
+//		}
+//		else
+//		{
+//			speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
 //		}
 
-		acc_vector_iq_subtract_mean_inline(point_vector);
-		acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
-		acc_vector_iq_fft_inline(fft_vector);
-		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
-
-		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
-
-		float speed;
-		if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
-		{
-			speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
-		}
-		else
-		{
-			speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
-		}
-
-		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " m/s mag:: %f\n" ,
-			   max_magnitude_index,
-			   ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
-			   ACC_LOG_FLOAT_TO_INTEGER(speed),
-			   fft_magnitudes->data[max_magnitude_index]);
+//		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " m/s mag:: %f\n" ,
+//			   max_magnitude_index,
+//			   ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
+//			   ACC_LOG_FLOAT_TO_INTEGER(speed),
+//			   fft_magnitudes->data[max_magnitude_index]);
 		HAL_Delay(20);
 	}
 
