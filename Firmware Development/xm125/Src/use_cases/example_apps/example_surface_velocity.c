@@ -196,40 +196,49 @@ int acconeer_main(int argc, char *argv[])
 			break;
 		}
 
-		float psd[128] = {0};
+//		float psd[128] = {0};
 		acc_get_iq_point_vector(&control_helper_state, 0, point_vector);
 
-		welch(point_vector->data, point_vector->data_length , 512 , dataBuffer->data , fFT->data , psd, mHannWindow, 512 , (float)sweep_rate , 8);
-//
-//		// Print PSD values
-		printf("PSD values:\n");
-		for (uint16_t i = 0U; i < point_vector->data_length; i++)
+//		welch(point_vector->data, point_vector->data_length , 512 , dataBuffer->data , fFT->data , psd, mHannWindow, 512 , (float)sweep_rate , 8);
+////
+////		// Print PSD values
+//		printf("PSD values:\n");
+//		for (uint16_t i = 0U; i < point_vector->data_length; i++)
+//		{
+//		    printf("PSD[%u]: %f\n", i, psd[i]);
+//		}
+
+		acc_vector_iq_subtract_mean_inline(point_vector);
+		acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
+		acc_vector_iq_fft_inline(fft_vector);
+		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
+
+		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
+
+		float speed;
+		float thresholValue = 3000.00;
+
+		if(fft_magnitudes->data[max_magnitude_index] > thresholValue)
 		{
-		    printf("PSD[%u]: %f\n", i, psd[i]);
+				if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
+				{
+					speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
+				}
+				else
+				{
+					speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
+				}
 		}
 
-//		acc_vector_iq_subtract_mean_inline(point_vector);
-//		acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
-//		acc_vector_iq_fft_inline(fft_vector);
-//		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
-//
-//		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
+		else
+		{
+			speed = 0;
+		}
 
-//		float speed;
-//		if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
-//		{
-//			speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
-//		}
-//		else
-//		{
-//			speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
-//		}
-
-//		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " m/s mag:: %f\n" ,
-//			   max_magnitude_index,
-//			   ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
-//			   ACC_LOG_FLOAT_TO_INTEGER(speed),
-//			   fft_magnitudes->data[max_magnitude_index]);
+		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
+		       max_magnitude_index,
+		       ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
+		       ACC_LOG_FLOAT_TO_INTEGER(speed));
 		HAL_Delay(20);
 	}
 
