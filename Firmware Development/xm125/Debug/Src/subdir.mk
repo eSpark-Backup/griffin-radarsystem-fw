@@ -5,6 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Src/i2c_slave.c \
 ../Src/main.c \
 ../Src/stm32l4xx_hal_msp.c \
 ../Src/stm32l4xx_it.c \
@@ -13,6 +14,7 @@ C_SRCS += \
 ../Src/system_stm32l4xx.c 
 
 OBJS += \
+./Src/i2c_slave.o \
 ./Src/main.o \
 ./Src/stm32l4xx_hal_msp.o \
 ./Src/stm32l4xx_it.o \
@@ -21,6 +23,7 @@ OBJS += \
 ./Src/system_stm32l4xx.o 
 
 C_DEPS += \
+./Src/i2c_slave.d \
 ./Src/main.d \
 ./Src/stm32l4xx_hal_msp.d \
 ./Src/stm32l4xx_it.d \
@@ -36,7 +39,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/stm32l4xx_hal_msp.cyclo ./Src/stm32l4xx_hal_msp.d ./Src/stm32l4xx_hal_msp.o ./Src/stm32l4xx_hal_msp.su ./Src/stm32l4xx_it.cyclo ./Src/stm32l4xx_it.d ./Src/stm32l4xx_it.o ./Src/stm32l4xx_it.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/system_stm32l4xx.cyclo ./Src/system_stm32l4xx.d ./Src/system_stm32l4xx.o ./Src/system_stm32l4xx.su
+	-$(RM) ./Src/i2c_slave.cyclo ./Src/i2c_slave.d ./Src/i2c_slave.o ./Src/i2c_slave.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/stm32l4xx_hal_msp.cyclo ./Src/stm32l4xx_hal_msp.d ./Src/stm32l4xx_hal_msp.o ./Src/stm32l4xx_hal_msp.su ./Src/stm32l4xx_it.cyclo ./Src/stm32l4xx_it.d ./Src/stm32l4xx_it.o ./Src/stm32l4xx_it.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/system_stm32l4xx.cyclo ./Src/system_stm32l4xx.d ./Src/system_stm32l4xx.o ./Src/system_stm32l4xx.su
 
 .PHONY: clean-Src
 

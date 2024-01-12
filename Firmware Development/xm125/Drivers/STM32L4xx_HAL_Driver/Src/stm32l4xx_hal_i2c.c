@@ -4051,7 +4051,7 @@ HAL_StatusTypeDef HAL_I2C_Slave_Seq_Receive_IT(I2C_HandleTypeDef *hi2c, uint8_t 
                                                uint32_t XferOptions)
 {
   /* Check the parameters */
-  assert_param(IS_I2C_TRANSFER_OPTIONS_REQUEST(XferOptions));
+  assert_param(IS_I2C_TRANSFER_OPTIONS_REQUEST(XferOptions)   );
 
   if (((uint32_t)hi2c->State & (uint32_t)HAL_I2C_STATE_LISTEN) == (uint32_t)HAL_I2C_STATE_LISTEN)
   {

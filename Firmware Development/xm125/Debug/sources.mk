@@ -25,8 +25,8 @@ SUBDIRS := \
 Drivers/STM32L4xx_HAL_Driver/Src \
 Src/algorithms \
 Src/examples/helper \
-Src/integration \
 Src \
+Src/integration \
 Src/use_cases/example_apps \
 Startup \
 

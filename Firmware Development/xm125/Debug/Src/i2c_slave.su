@@ -1,0 +1,3 @@
+../Src/i2c_slave.c:10:13:HAL_I2C_ListenCpltCallback	16	static
+../Src/i2c_slave.c:15:13:HAL_I2C_AddrCallback	16	static
+../Src/i2c_slave.c:27:6:HAL_I2C_SlaveRxCpltCallback	16	static
