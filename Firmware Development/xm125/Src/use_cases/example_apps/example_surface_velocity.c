@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-
+#include "i2c_slave.h"
 #include "acc_config.h"
 #include "acc_hal_definitions_a121.h"
 #include "acc_hal_integration_a121.h"
@@ -32,6 +32,8 @@
 
 #define SWEEPS_PER_FRAME 512
 #define PI (3.14159265358979323846f)
+extern I2C_HandleTypeDef hi2c2;
+
 
 static void update_configuration(acc_config_t *config);
 
@@ -103,6 +105,16 @@ static void welch(const float complex *data,
 		psd[i * stride] *= scale;
 	}
 }
+struct rxData
+{
+	float speed;
+	float magnitude;
+	int32_t speedIndex;
+};
+
+extern I2C_HandleTypeDef hi2c2;
+volatile float speed;
+volatile int32_t max_magnitude_index;
 
 int acconeer_main(int argc, char *argv[])
 {
@@ -162,12 +174,6 @@ int acconeer_main(int argc, char *argv[])
 
 	acc_vector_iq_init_hanning_window(hanning_window);
 	acc_algorithm_hann(point_vector_length, mHannWindow->data); // function surface velocity ki example se use kiya hai window nikaalne k liye
-//    for(int i = 0; i < point_vector_length ; i++)
-//    {
-//    	printf("Hann Window: %d\n ",mHannWindow->data[i]);
-//    }
-
-
 
 	uint32_t sweep_rate = control_helper_state.proc_meta.max_sweep_rate;
 
@@ -213,9 +219,9 @@ int acconeer_main(int argc, char *argv[])
 		acc_vector_iq_fft_inline(fft_vector);
 		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
 
-		int32_t max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
+		max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
 
-		float speed;
+//		float speed;
 		float thresholValue = 3000.00;
 
 		if(fft_magnitudes->data[max_magnitude_index] > thresholValue)
@@ -234,11 +240,15 @@ int acconeer_main(int argc, char *argv[])
 		{
 			speed = 0;
 		}
+        printf("speed: %f\t magnitudeValue: %f\t speedIndex: %d\n" , speed , fft_magnitudes->data[max_magnitude_index], max_magnitude_index);
 
-		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
-		       max_magnitude_index,
-		       ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
-		       ACC_LOG_FLOAT_TO_INTEGER(speed));
+//        hi2c2.pBuffPtr = &max_magnitude_index;
+//        hi2c2.XferSize = 4;
+
+//		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
+//		       max_magnitude_index,
+//		       ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
+//		       ACC_LOG_FLOAT_TO_INTEGER(speed));
 		HAL_Delay(20);
 	}
 

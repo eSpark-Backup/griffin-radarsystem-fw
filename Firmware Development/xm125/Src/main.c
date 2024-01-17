@@ -134,7 +134,7 @@ int main(void)
     	Error_Handler();
     }
 
-//	acconeer_main(0, NULL);
+	acconeer_main(0, NULL);
 	uint8_t buff[] = "Hello World\n";
 	HAL_UART_Transmit(&huart2, buff, sizeof(buff), HAL_MAX_DELAY);
 	printf("Hello World .. !! %d \r\n", 10);

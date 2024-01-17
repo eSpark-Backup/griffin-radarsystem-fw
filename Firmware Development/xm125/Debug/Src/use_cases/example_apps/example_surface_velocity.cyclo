@@ -1,7 +1,7 @@
-example_surface_velocity.c:48:13:welch	7
-example_surface_velocity.c:107:5:acconeer_main	34
-example_surface_velocity.c:263:13:update_configuration	1
-example_surface_velocity.c:282:13:acc_vector_iq_init_hanning_window	2
-example_surface_velocity.c:293:13:acc_vector_iq_subtract_mean_inline	3
-example_surface_velocity.c:311:13:acc_vector_iq_fft_inline	1
-example_surface_velocity.c:323:13:fft_inline	8
+example_surface_velocity.c:50:13:welch	7
+example_surface_velocity.c:119:5:acconeer_main	26
+example_surface_velocity.c:273:13:update_configuration	1
+example_surface_velocity.c:292:13:acc_vector_iq_init_hanning_window	2
+example_surface_velocity.c:303:13:acc_vector_iq_subtract_mean_inline	3
+example_surface_velocity.c:321:13:acc_vector_iq_fft_inline	1
+example_surface_velocity.c:333:13:fft_inline	8

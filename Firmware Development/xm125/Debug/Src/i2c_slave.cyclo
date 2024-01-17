@@ -1,4 +1,3 @@
-i2c_slave.c:19:6:HAL_I2C_ListenCpltCallback	1
-i2c_slave.c:24:6:HAL_I2C_AddrCallback	3
-i2c_slave.c:43:6:HAL_I2C_SlaveRxCpltCallback	1
-i2c_slave.c:48:6:HAL_I2C_ErrorCallback	1
+i2c_slave.c:27:6:HAL_I2C_ListenCpltCallback	1
+i2c_slave.c:32:6:HAL_I2C_AddrCallback	2
+i2c_slave.c:86:6:HAL_I2C_ErrorCallback	1
