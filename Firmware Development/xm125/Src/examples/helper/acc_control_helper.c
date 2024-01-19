@@ -156,23 +156,23 @@ fail:
 
 bool acc_control_helper_get_next(acc_control_helper_t *radar)
 {
-	if (!acc_sensor_measure(radar->sensor))
-	{
-		fprintf(stderr, "acc_sensor_measure failed\n");
-		goto fail;
-	}
-
-	if (!acc_hal_integration_wait_for_sensor_interrupt(radar->sensor_id, SENSOR_MEASURE_TIMEOUT_MS))
-	{
-		fprintf(stderr, "Sensor interrupt timeout\n");
-		goto fail;
-	}
-
-	if (!acc_sensor_read(radar->sensor, radar->buffer, radar->buffer_size))
-	{
-		fprintf(stderr, "acc_sensor_read failed\n");
-		goto fail;
-	}
+//	if (!acc_sensor_measure(radar->sensor))
+//	{
+//		fprintf(stderr, "acc_sensor_measure failed\n");
+//		goto fail;
+//	}
+//
+//	if (!acc_hal_integration_wait_for_sensor_interrupt(radar->sensor_id, SENSOR_MEASURE_TIMEOUT_MS))
+//	{
+//		fprintf(stderr, "Sensor interrupt timeout\n");
+//		goto fail;
+//	}
+//
+//	if (!acc_sensor_read(radar->sensor, radar->buffer, radar->buffer_size))
+//	{
+//		fprintf(stderr, "acc_sensor_read failed\n");
+//		goto fail;
+//	}
 
 	acc_processing_execute(radar->processing, radar->buffer, &radar->proc_result);
 

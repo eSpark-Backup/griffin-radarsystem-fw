@@ -5,5 +5,5 @@
 
 USER_OBJS :=
 
-LIBS := -lacconeer_a121 -lacc_detector_distance_a121 -lacconeer_exploration_server_a121 -lacc_detector_presence_a121
+LIBS := -lacc_detector_distance_a121 -lacconeer_a121 -lacconeer_exploration_server_a121 -lacc_detector_presence_a121
 

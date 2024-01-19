@@ -115,7 +115,7 @@ void acc_hal_integration_sensor_supply_off(acc_sensor_id_t sensor_id)
 	(void)sensor_id;  // Ignore parameter sensor_id
 }
 
-
+//Is Same function is calling from both speed and distance firmware??? :: YES..!!
 void acc_hal_integration_sensor_enable(acc_sensor_id_t sensor_id)
 {
 	(void)sensor_id;  // Ignore parameter sensor_id

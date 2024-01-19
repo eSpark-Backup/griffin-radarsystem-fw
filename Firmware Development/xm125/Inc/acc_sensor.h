@@ -28,7 +28,7 @@
 
 struct acc_sensor;
 
-typedef struct acc_sensor acc_sensor_t;
+typedef struct acc_sensor acc_sensor_t;  // SAME for all fimrwares?? ::
 
 
 /**
@@ -44,7 +44,7 @@ typedef struct acc_sensor acc_sensor_t;
  *
  * @return Sensor instance, NULL if sensor instance was not possible to create
  */
-acc_sensor_t *acc_sensor_create(acc_sensor_id_t sensor_id);
+acc_sensor_t *acc_sensor_create(acc_sensor_id_t sensor_id);  //Is this create function same for bothe SPEED and DISTANCE FIRMWARE? :: YES
 
 
 /**
@@ -150,7 +150,7 @@ bool acc_sensor_measure(acc_sensor_t *sensor);
  *            from @ref acc_rss_get_buffer_size
  * @return true if successful, false otherwise
  */
-bool acc_sensor_read(const acc_sensor_t *sensor, void *buffer, uint32_t buffer_size);
+bool acc_sensor_read(const acc_sensor_t *sensor, void *buffer, uint32_t buffer_size);  // Speed and Distance Firmwares use same function? ::
 
 
 /**

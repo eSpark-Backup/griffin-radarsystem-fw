@@ -49,6 +49,11 @@ Src/use_cases/example_apps/example_surface_velocity.o: \
  C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_control_helper.h \
  C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_processing.h \
  C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config_subsweep.h \
+ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h \
+ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_a121.h \
+ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance.h \
+ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance_definitions.h \
+ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration.h \
  C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h
 C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/i2c_slave.h:
 C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/main.h:
@@ -99,4 +104,9 @@ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125
 C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_control_helper.h:
 C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_processing.h:
 C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config_subsweep.h:
+C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h:
+C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_a121.h:
+C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance.h:
+C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance_definitions.h:
+C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration.h:
 C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h:
