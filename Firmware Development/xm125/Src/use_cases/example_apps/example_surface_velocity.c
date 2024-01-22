@@ -28,6 +28,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "acc_control_helper.h"
 
 #include "acc_definitions_a121.h"
 #include "acc_detector_distance.h"
@@ -124,7 +125,7 @@ struct rxData
 extern I2C_HandleTypeDef hi2c2;
 volatile float speed;
 volatile int32_t max_magnitude_index;
-
+volatile acc_detector_distance_result_t result;
 int acconeer_main(int argc, char *argv[])
 {
 	(void)argc;
@@ -216,6 +217,8 @@ int acconeer_main(int argc, char *argv[])
 		cleanup(&resources);
 		return EXIT_FAILURE;
 	}
+
+
 //
 //	// Print the configuration
 //	acc_detector_distance_config_log(resources.handle, resources.config);
@@ -224,100 +227,168 @@ int acconeer_main(int argc, char *argv[])
 	acc_hal_integration_sensor_supply_on(SENSOR_ID);
 	acc_hal_integration_sensor_enable(SENSOR_ID);
 
-	resources.sensor = acc_sensor_create(SENSOR_ID);
-	if (resources.sensor == NULL)
-	{
-		printf("acc_sensor_create() failed\n");
-		cleanup(&resources);
-		return EXIT_FAILURE;
-	}
-//
-	acc_cal_result_t sensor_cal_result;
-//
-	if (!do_sensor_calibration(resources.sensor, &sensor_cal_result, resources.buffer, resources.buffer_size))
-	{
-		printf("Sensor calibration failed\n");
-		cleanup(&resources);
-		return EXIT_FAILURE;
-	}
-//
-//	if (!do_full_detector_calibration(&resources, &sensor_cal_result))
+	bool handling = false;
+	bool handlingDistancePart = false;
+    bool handlingSpeedPart = false;
+    acc_cal_result_t sensor_cal_result;
+//	resources.sensor = acc_sensor_create(SENSOR_ID);
+//	if (resources.sensor == NULL)
 //	{
-//		printf("Detector calibration failed\n");
+//		printf("acc_sensor_create() failed\n");
 //		cleanup(&resources);
 //		return EXIT_FAILURE;
 //	}
-//	uint32_t iterations = 25;
-//	for (uint32_t i = 0U; i < iterations; i++)
-	while (true)
-	{
-		acc_detector_distance_result_t result = { 0 };
 
-		if (!do_detector_get_next(&resources, &sensor_cal_result, &result))
+	uint8_t counter = 0;
+
+	while(true)
+
+	{
+		if((0 == (counter % 2)))
 		{
-			printf("Could not get next result\n");
+
+		acc_hal_integration_sensor_disable(SENSOR_ID);
+		acc_hal_integration_sensor_enable(SENSOR_ID);
+		resources.sensor = acc_sensor_create(SENSOR_ID);
+
+		if (resources.sensor == NULL)
+		{
+			printf("acc_sensor_create() failed\n");
 			cleanup(&resources);
 			return EXIT_FAILURE;
 		}
 
-		print_distance_result(&result);
+		   if( handlingDistancePart == false)
+	       {
 
-		res = acc_control_helper_get_next(&control_helper_state);
-		if (!res)
-		{
-			printf("acc_control_helper_get_next() failed\n");
-			break;
-		}
-
-//		float psd[128] = {0};
-		acc_get_iq_point_vector(&control_helper_state, 0, point_vector);
-
-//		welch(point_vector->data, point_vector->data_length , 512 , dataBuffer->data , fFT->data , psd, mHannWindow, 512 , (float)sweep_rate , 8);
-////
-////		// Print PSD values
-//		printf("PSD values:\n");
-//		for (uint16_t i = 0U; i < point_vector->data_length; i++)
-//		{
-//		    printf("PSD[%u]: %f\n", i, psd[i]);
-//		}
-
-		acc_vector_iq_subtract_mean_inline(point_vector);
-		acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
-		acc_vector_iq_fft_inline(fft_vector);
-		acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
-
-		max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
-
-//		float speed;
-		float thresholValue = 3000.00;
-
-		if(fft_magnitudes->data[max_magnitude_index] > thresholValue)
-		{
-				if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
+				if (!do_sensor_calibration(resources.sensor, &sensor_cal_result, resources.buffer, resources.buffer_size))
 				{
-					speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
+					printf("Sensor calibration failed\n");
+					cleanup(&resources);
+					return EXIT_FAILURE;
 				}
-				else
+			//
+				if (!do_full_detector_calibration(&resources, &sensor_cal_result))
 				{
-					speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
+					printf("Detector calibration failed\n");
+					cleanup(&resources);
+					return EXIT_FAILURE;
 				}
+//				handlingDistancePart = true;
+	       }
+		//	uint32_t iterations = 25;
+		//	for (uint32_t i = 0U; i < iterations; i++)
+		//	while (true)
+		//	{
+//		    handlingDistancePart = true;
+
+			acc_detector_distance_result_t result = { 0 };
+
+			if (!do_detector_get_next(&resources, &sensor_cal_result, &result))
+			{
+				printf("Could not get next result\n");
+				cleanup(&resources);
+				return EXIT_FAILURE;
+			}
+
+			print_distance_result(&result);
+//			acc_hal_integration_sensor_disable(SENSOR_ID);
+			acc_sensor_destroy(resources.sensor);
+
 		}
 
 		else
 		{
-			speed = 0;
+			acc_hal_integration_sensor_disable(SENSOR_ID);
+			acc_hal_integration_sensor_enable(SENSOR_ID);
+			control_helper_state.sensor = acc_sensor_create(control_helper_state.sensor_id);
+			if (control_helper_state.sensor == NULL)
+			{
+				fprintf(stderr, "Failed to create sensor\n");
+				return EXIT_FAILURE;
+			}
+
+			if(handlingSpeedPart == false)
+			{
+
+				if (!acc_control_helper_calibrate(&control_helper_state))
+				{
+					fprintf(stderr, "calibration failed\n");
+	//				return EXIT_FAILURE;
+				}
+
+				acc_hal_integration_sensor_disable(SENSOR_ID);
+				acc_hal_integration_sensor_enable(SENSOR_ID);
+
+				if (!acc_sensor_prepare(control_helper_state.sensor, control_helper_state.config, &control_helper_state.cal_result, control_helper_state.buffer, control_helper_state.buffer_size))
+				{
+					fprintf(stderr, "acc_sensor_prepare failed\n");
+					acc_sensor_status(control_helper_state.sensor);
+					return EXIT_FAILURE;
+				}
+
+
+//				handlingSpeedPart = true;
+			}
+
+
+
+			res = acc_control_helper_get_next(&control_helper_state);
+			if (!res)
+			{
+				printf("acc_control_helper_get_next() failed\n");
+				break;
+			}
+
+			acc_get_iq_point_vector(&control_helper_state, 0, point_vector);
+			acc_vector_iq_subtract_mean_inline(point_vector);
+			acc_vector_iq_mult(point_vector, hanning_window, fft_vector);
+			acc_vector_iq_fft_inline(fft_vector);
+			acc_vector_iq_amplitude(fft_vector, fft_magnitudes);
+
+			max_magnitude_index = acc_vector_float_argmax(fft_magnitudes); //Data ka max index return kr raha hai
+
+	//		float speed;
+			float thresholValue = 3000.00;
+
+			if(fft_magnitudes->data[max_magnitude_index] > thresholValue)
+			{
+					if (max_magnitude_index >= SWEEPS_PER_FRAME / 2)
+					{
+						speed = ((max_magnitude_index - SWEEPS_PER_FRAME ) * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);
+					}
+					else
+					{
+						speed = (max_magnitude_index * speed_step_kmh) * (KM_TO_M/HOURS_TO_SEC);  //* 0.27778 km/h to m/s
+					}
+			}
+
+			else
+			{
+				speed = 0;
+			}
+//			printf("speed: %f\t magnitudeValue: %f\t speedIndex: %d\n" , speed , fft_magnitudes->data[max_magnitude_index], max_magnitude_index);
+
+
+//			printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
+//			       max_magnitude_index,
+//			       ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
+//			       ACC_LOG_FLOAT_TO_INTEGER(speed));
+//		  acc_hal_integration_sensor_disable(SENSOR_ID);
+//		  free(control_helper_state.sensor);
+			acc_sensor_destroy(control_helper_state.sensor);
+
 		}
-        printf("speed: %f\t magnitudeValue: %f\t speedIndex: %d\n" , speed , fft_magnitudes->data[max_magnitude_index], max_magnitude_index);
+		counter++;
 
+        if(10 == counter)
+        {
+            counter = 0;
+            continue;
+        }
+//		handling = true;
 
-//        hi2c2.pBuffPtr = &max_magnitude_index;
-//        hi2c2.XferSize = 4;
-
-//		printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
-//		       max_magnitude_index,
-//		       ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),
-//		       ACC_LOG_FLOAT_TO_INTEGER(speed));
-		HAL_Delay(20);
+//		HAL_Delay(20);
 	}
 
 clean_up:
@@ -564,10 +635,13 @@ static bool do_detector_get_next(distance_detector_resources_t  *resources,
 	return true;
 }
 
+volatile uint8_t numDistances;
+volatile float distances[ACC_DETECTOR_DISTANCE_RESULT_MAX_NUM_DISTANCES];
 
 static void print_distance_result(const acc_detector_distance_result_t *result)
 {
 	printf("%d detected distances", result->num_distances);
+	numDistances = result->num_distances;
 	if (result->num_distances > 0)
 	{
 		printf(": ");
@@ -575,6 +649,8 @@ static void print_distance_result(const acc_detector_distance_result_t *result)
 		for (uint8_t i = 0; i < result->num_distances; i++)
 		{
 			printf("%" PRIfloat " m ", ACC_LOG_FLOAT_TO_INTEGER(result->distances[i]));
+			distances[i] = result->distances[i];
+
 		}
 	}
 

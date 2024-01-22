@@ -19,7 +19,7 @@
 #define SENSOR_MEASURE_TIMEOUT_MS     1000
 
 
-static bool acc_control_helper_calibrate(acc_control_helper_t *radar)
+bool acc_control_helper_calibrate(acc_control_helper_t *radar)
 {
 	bool cal_status;
 	bool cal_complete = false;
@@ -100,31 +100,32 @@ bool acc_control_helper_activate(acc_control_helper_t *radar)
 		goto fail;
 	}
 
-	acc_hal_integration_sensor_supply_on(radar->sensor_id);
-	acc_hal_integration_sensor_enable(radar->sensor_id);
+//	acc_hal_integration_sensor_supply_on(radar->sensor_id);
+//	acc_hal_integration_sensor_enable(radar->sensor_id);
 
-	radar->sensor = acc_sensor_create(radar->sensor_id);
-	if (radar->sensor == NULL)
-	{
-		fprintf(stderr, "Failed to create sensor\n");
-		goto fail;
-	}
-
-	if (!acc_control_helper_calibrate(radar))
-	{
-		fprintf(stderr, "calibration failed\n");
-		goto fail;
-	}
-
-	acc_hal_integration_sensor_disable(radar->sensor_id);
-	acc_hal_integration_sensor_enable(radar->sensor_id);
-
-	if (!acc_sensor_prepare(radar->sensor, radar->config, &radar->cal_result, radar->buffer, radar->buffer_size))
-	{
-		fprintf(stderr, "acc_sensor_prepare failed\n");
-		acc_sensor_status(radar->sensor);
-		goto fail;
-	}
+//	radar->sensor = acc_sensor_create(radar->sensor_id);
+//
+//	if (radar->sensor == NULL)
+//	{
+//		fprintf(stderr, "Failed to create sensor\n");
+//		goto fail;
+//	}
+//
+//	if (!acc_control_helper_calibrate(radar))
+//	{
+//		fprintf(stderr, "calibration failed\n");
+//		goto fail;
+//	}
+//
+//	acc_hal_integration_sensor_disable(radar->sensor_id);
+//	acc_hal_integration_sensor_enable(radar->sensor_id);
+//
+//	if (!acc_sensor_prepare(radar->sensor, radar->config, &radar->cal_result, radar->buffer, radar->buffer_size))
+//	{
+//		fprintf(stderr, "acc_sensor_prepare failed\n");
+//		acc_sensor_status(radar->sensor);
+//		goto fail;
+//	}
 
 	return true;
 
@@ -156,23 +157,23 @@ fail:
 
 bool acc_control_helper_get_next(acc_control_helper_t *radar)
 {
-//	if (!acc_sensor_measure(radar->sensor))
-//	{
-//		fprintf(stderr, "acc_sensor_measure failed\n");
-//		goto fail;
-//	}
-//
-//	if (!acc_hal_integration_wait_for_sensor_interrupt(radar->sensor_id, SENSOR_MEASURE_TIMEOUT_MS))
-//	{
-//		fprintf(stderr, "Sensor interrupt timeout\n");
-//		goto fail;
-//	}
-//
-//	if (!acc_sensor_read(radar->sensor, radar->buffer, radar->buffer_size))
-//	{
-//		fprintf(stderr, "acc_sensor_read failed\n");
-//		goto fail;
-//	}
+	if (!acc_sensor_measure(radar->sensor))
+	{
+		fprintf(stderr, "acc_sensor_measure failed\n");
+		goto fail;
+	}
+
+	if (!acc_hal_integration_wait_for_sensor_interrupt(radar->sensor_id, SENSOR_MEASURE_TIMEOUT_MS))
+	{
+		fprintf(stderr, "Sensor interrupt timeout\n");
+		goto fail;
+	}
+
+	if (!acc_sensor_read(radar->sensor, radar->buffer, radar->buffer_size))
+	{
+		fprintf(stderr, "acc_sensor_read failed\n");
+		goto fail;
+	}
 
 	acc_processing_execute(radar->processing, radar->buffer, &radar->proc_result);
 

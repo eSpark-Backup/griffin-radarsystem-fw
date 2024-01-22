@@ -72,7 +72,7 @@ void acc_control_helper_destroy(acc_control_helper_t *radar);
  *
  */
 bool acc_control_helper_activate(acc_control_helper_t *radar);
-
+bool acc_control_helper_calibrate(acc_control_helper_t *radar); //Self added fubnction
 
 /**
  * @brief Perform a radar measurement and wait for the result.
