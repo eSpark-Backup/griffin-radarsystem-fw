@@ -17,11 +17,11 @@ extern volatile float distances[10];
 
 typedef struct
 {
-	float speed;
-	int32_t maxMagnitudeIndex;
-	float distanceArray[10];
-	float *ptrToArray;
-	uint8_t numDistances;
+	 float speed;
+	 int32_t maxMagnitudeIndex;
+	 float distanceArray[5];
+//	 float *ptrToArray;
+	 uint8_t numDistances;
 
 }TransmitData;
 
@@ -37,17 +37,25 @@ void HAL_I2C_ListenCpltCallback(I2C_HandleTypeDef *hi2c)
 
 void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, uint16_t AddrMatchCode)
 {
-	TransmitData transmitData;
+
+	static TransmitData transmitData;
 	transmitData.speed = speed;
 	transmitData.maxMagnitudeIndex = max_magnitude_index;
-	transmitData.numDistances = 5;
-    printf("logssssssssssssssssssssssssssssssssssssssssssssss\n");
-    float array[5] = {2,1,3,5,2};
-	for(uint8_t i=0; i<transmitData.numDistances ;i++)
-	{
-	   transmitData.distanceArray[i] = array[i];
-//	   printf("number distnaces %d distance Value %f\n", numDistances ,  distances[i]);
-	}
+	transmitData.numDistances = numDistances;
+//	printf("\n");
+//	printf("\n");
+//    printf("Number Distances %d speed: %f  magitudeIndex: %d\n" , transmitData.numDistances , transmitData.speed , transmitData.maxMagnitudeIndex );
+//    printf("\n");
+//    printf("\n");
+   // float array[5] = {2,1,3,5,v2};
+    if(transmitData.numDistances)
+    {
+    	for(uint8_t i=0; i<transmitData.numDistances ;i++)
+		{
+		   transmitData.distanceArray[i] = distances[i];
+		   printf("number distnaces %d distance Value %f\n", numDistances ,  distances[i]);
+		}
+    }
 	if (TransferDirection == I2C_DIRECTION_TRANSMIT)  // if the master wants to transmit the data
 	{
 		// receive using sequential function.
@@ -66,9 +74,10 @@ void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, ui
 //			printf("number distnaces %d distance Value %f\n", numDistances ,  distances[i]);
 //
 //		}
-		HAL_I2C_Slave_Seq_Transmit_IT(hi2c, (uint8_t*)&transmitData , sizeof(transmitData) , I2C_FIRST_FRAME);
+		HAL_I2C_Slave_Seq_Transmit_IT(hi2c, (uint8_t*)&transmitData , sizeof(transmitData) , I2C_FIRST_AND_LAST_FRAME); // I2C_FIRST_FRAME
 
 	}
+
 }
 
 //void HAL_I2C_SlaveTxCpltCallback(I2C_HandleTypeDef *hi2c)
