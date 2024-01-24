@@ -11,7 +11,8 @@
 | 3      | Development board (XE125)       | XM125 | STM32 | a121 | - | Working | Developing project with it since the custom board master is not working |
 | 4      | Development board (XE125)       | XM125 | STM32 | a121 | - | not Working | One UART not working |
 
+### Image of all items received
 ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/52d82f3c-f36f-4e90-b30f-8ada3b95bb82)
 
-### Schematic for S#2 in Table 1
+### Schematic for Custom Board Small in Table 1
 ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/76909080/50f3a983-dfff-4cc3-84c0-5a1f07cfa45c)
