@@ -98,6 +98,14 @@ Note: STM32 CubeIDE needs the following GNU Toolchain to run the project.
 
 ### Master Firmware
 
+When you flash the master firmware to the device you can observe the following output in the logs over UART:
+
+![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/efdddfcb-2247-4ac2-97cc-b63700fd38cb)
+
+Where ``0x52`` is the address of the slave A121. 
+
+After the communication has developed between the master and slave you will start receiving the distance and speed values.  
+
 [Master Firmware](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/Master%20Firmware/RADAR)
 
 ### Slave Firmware 
