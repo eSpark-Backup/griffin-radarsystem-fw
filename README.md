@@ -8,7 +8,7 @@ The hardware that has been sent by the Client is illustrated
   - With XM125 Module
     - On-module MCU name: STM32
     - On module Radar sensor name: a121
-    - With on board MCU: Yes
+    - With on-board MCU: Yes
     - Status: Not working
     - Remarks: MCU pins are short
 
@@ -73,6 +73,8 @@ Since the board requires 1.8 volts and the USB to UART converter (CP201x) works 
 
 ## Software setup
 
+To establish the environment for software development, follow these steps or alternatively, clone the project from the firmware section located below this one.
+
 1. First we need to install SDKs from [SDK](https://developer.acconeer.com/) for both A111 and A121
 
    Install for A111 
@@ -83,7 +85,7 @@ Since the board requires 1.8 volts and the USB to UART converter (CP201x) works 
 
    ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/623fdda2-a671-4fce-bfeb-97b022614961)
 
-
+2. After downloading the SDKs you can follow the following [document](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125/doc/XM125%20Software%20User%20Guide.pdf) from page number 7 to set up your STM32 Cube IDE for the development. This document is for XM125 but the same steps will be followed for the XM124 module.
 
 ## Firmware
 
@@ -94,6 +96,18 @@ Since the board requires 1.8 volts and the USB to UART converter (CP201x) works 
 ### Slave Firmware 
 
 [Slave Firmware (XM125) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125)
+
+## Acconeer Support and Their Exploration Tool:
+
+Acconeer has offered exceptional assistance with their exploration tool, which is compatible with both A111 and A121 sensors. This UI-based tool facilitates radar testing and serves as a valuable resource throughout your firmware development process, allowing you to verify compatibility along the way. 
+
+Follow the following YouTube tutorials regarding the [Exploration tool](https://github.com/acconeer/acconeer-python-exploration):
+
+[A121](https://www.youtube.com/watch?v=Z8lQgxaJFOY)
+
+[A111](https://www.youtube.com/watch?v=WKVoFGJzubs&t=266s)
+
+
 
 
 
