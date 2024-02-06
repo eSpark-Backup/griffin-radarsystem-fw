@@ -95,7 +95,7 @@ To establish the environment for software development, follow these steps or alt
 
 ### Slave Firmware 
 
-[Slave Firmware (XM125) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125)
+[Slave Firmware (A121) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125)
 
 ## Acconeer Support and Their Exploration Tool:
 
