@@ -96,7 +96,11 @@ To establish the environment for software development, follow these steps or alt
 ### Slave Firmware 
 
 [Slave Firmware (A121) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125)
+[Slave Firmware (A111) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A111)
 
+Note:
+  For flashing the code on the XM124 module we need to use the STM32 programmer. Follow this [Link](https://www.st.com/resource/en/user_manual/um2237-stm32cubeprogrammer-software-description-stmicroelectronics.pdf)
+  
 ## Acconeer Support and Their Exploration Tool:
 
 Acconeer has offered exceptional assistance with their exploration tool, which is compatible with both A111 and A121 sensors. This UI-based tool facilitates radar testing and serves as a valuable resource throughout your firmware development process, allowing you to verify compatibility along the way. 
