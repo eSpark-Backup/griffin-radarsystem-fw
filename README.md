@@ -1,6 +1,6 @@
 # griffin-radarsystem-fw
 
-## Hardware That Project Requires
+## Hardware Summary
 
 The hardware that has been sent by the Client is illustrated
 
@@ -54,6 +54,13 @@ Image of all items received
 - If the forward-facing radar's (master board) velocity exceeds that of the ground (small board), it indicates an approaching object.
 - Additional filtering techniques, such as averaging, may be applied if necessary.
 - A threshold is set to activate the flatcoin vibration motor only when the approaching object's velocity exceeds 1 meter per second relative to the ground radar's velocity.
+
+## Hardware Configuration
+
+### Master Board
+
+Since the master board provided by the client is not functioning, as detailed in the 'Hardware Summary,' we are employing the STM32 Nucleo board with the XE125 development kit, following the schematic of the custom board (master).
+
   
 
 
