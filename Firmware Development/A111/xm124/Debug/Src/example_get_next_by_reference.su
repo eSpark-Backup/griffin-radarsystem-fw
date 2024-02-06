@@ -1,0 +1,3 @@
+../Src/example_get_next_by_reference.c:46:5:acconeer_main	72	static
+../Src/example_get_next_by_reference.c:132:6:update_configuration	24	static
+../Src/example_get_next_by_reference.c:142:6:print_data	24	static

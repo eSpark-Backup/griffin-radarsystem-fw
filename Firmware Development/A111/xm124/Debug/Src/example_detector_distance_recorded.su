@@ -1,0 +1,4 @@
+../Src/example_detector_distance_recorded.c:59:5:acconeer_main	24	static
+../Src/example_detector_distance_recorded.c:110:6:record_background	32	static
+../Src/example_detector_distance_recorded.c:145:6:measure_with_recorded_background	88	dynamic
+../Src/example_detector_distance_recorded.c:196:6:print_distances	24	static

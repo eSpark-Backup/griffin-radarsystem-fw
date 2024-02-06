@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['sampling_5fmode_1691',['SAMPLING_MODE',['../example__low__power__sparse_8c.html#aac68acd8b052ae8ade27c9cea4dd8f6f',1,'example_low_power_sparse.c']]],
+  ['selected_5fpower_5fsave_5fmode_1692',['SELECTED_POWER_SAVE_MODE',['../example__low__power__envelope_8c.html#a173daea15368362cb1f5d0e2594c2c6b',1,'SELECTED_POWER_SAVE_MODE():&#160;example_low_power_envelope.c'],['../example__low__power__sparse_8c.html#a173daea15368362cb1f5d0e2594c2c6b',1,'SELECTED_POWER_SAVE_MODE():&#160;example_low_power_sparse.c']]],
+  ['selected_5fsampling_5fmode_1693',['SELECTED_SAMPLING_MODE',['../example__low__power__sparse_8c.html#a70007b76b2fe65819e056ab772116c52',1,'example_low_power_sparse.c']]],
+  ['selected_5fservice_5fproile_1694',['SELECTED_SERVICE_PROILE',['../example__low__power__envelope_8c.html#ad0e1684a2c488385086278901a5d9fb3',1,'SELECTED_SERVICE_PROILE():&#160;example_low_power_envelope.c'],['../example__low__power__sparse_8c.html#ad0e1684a2c488385086278901a5d9fb3',1,'SELECTED_SERVICE_PROILE():&#160;example_low_power_sparse.c']]],
+  ['sensor_5fcount_1695',['SENSOR_COUNT',['../acc__hal__integration__stm32cube__xm124_8c.html#adb6af7ed8689b3af8abc20736f75d26a',1,'acc_hal_integration_stm32cube_xm124.c']]],
+  ['sensor_5fid_1696',['SENSOR_ID',['../ref__app__parking_8c.html#af59052da2439dbf99ccf29a3f8bf9399',1,'ref_app_parking.c']]],
+  ['service_5fdownsampling_1697',['SERVICE_DOWNSAMPLING',['../ref__app__parking_8c.html#a830d3ceaa9b95374ff672c8d329bd940',1,'ref_app_parking.c']]],
+  ['service_5fhwaas_1698',['SERVICE_HWAAS',['../ref__app__parking_8c.html#a71b410273fc7911192ba3512aa070858',1,'ref_app_parking.c']]],
+  ['service_5fprofile_1699',['SERVICE_PROFILE',['../example__low__power__envelope_8c.html#a3eedd6afd5d7018617bcff04d9f06bed',1,'SERVICE_PROFILE():&#160;example_low_power_envelope.c'],['../example__low__power__sparse_8c.html#a3eedd6afd5d7018617bcff04d9f06bed',1,'SERVICE_PROFILE():&#160;example_low_power_sparse.c']]],
+  ['service_5fruntime_5fmin_5fs_1700',['SERVICE_RUNTIME_MIN_S',['../ref__app__parking_8c.html#ad62dbcfe5d86a73eb61beda6b9372406',1,'ref_app_parking.c']]],
+  ['service_5fuptime_5fmax_5fs_1701',['SERVICE_UPTIME_MAX_S',['../ref__app__parking_8c.html#ab05011b0ccafaacaae61b83f0156e88e',1,'ref_app_parking.c']]],
+  ['snprintf_1702',['snprintf',['../printf_8h.html#aa367b75c5aed883fef5befbdf04835a4',1,'printf.h']]],
+  ['spf_1703',['SPF',['../example__low__power__sparse_8c.html#afeffbee5bf07145432a7bac3afe1fce4',1,'example_low_power_sparse.c']]],
+  ['sprintf_1704',['sprintf',['../printf_8h.html#a5998f60c4f4af322b36debdbd11d7917',1,'printf.h']]],
+  ['suspend_5ftime_5fbetween_5fupdates_5fms_1705',['SUSPEND_TIME_BETWEEN_UPDATES_MS',['../example__low__power__envelope_8c.html#a7f45014c06aa5cde888ad8acb0d79360',1,'SUSPEND_TIME_BETWEEN_UPDATES_MS():&#160;example_low_power_envelope.c'],['../example__low__power__sparse_8c.html#a7f45014c06aa5cde888ad8acb0d79360',1,'SUSPEND_TIME_BETWEEN_UPDATES_MS():&#160;example_low_power_sparse.c']]],
+  ['sweeps_5fper_5fframe_1706',['SWEEPS_PER_FRAME',['../ref__app__wave__to__exit_8c.html#aee07b0128f0f29b0d107878abd10d5df',1,'ref_app_wave_to_exit.c']]]
+];

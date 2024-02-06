@@ -1,0 +1,4 @@
+example_detector_distance_recorded.c:59:5:acconeer_main	5
+example_detector_distance_recorded.c:110:6:record_background	4
+example_detector_distance_recorded.c:145:6:measure_with_recorded_background	8
+example_detector_distance_recorded.c:196:6:print_distances	2

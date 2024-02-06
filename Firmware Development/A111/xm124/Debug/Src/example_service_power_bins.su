@@ -1,0 +1,3 @@
+../Src/example_service_power_bins.c:44:5:acconeer_main	96	dynamic
+../Src/example_service_power_bins.c:130:6:update_configuration	24	static
+../Src/example_service_power_bins.c:140:6:print_data	24	static

@@ -1,0 +1,11 @@
+../Src/ref_app_tank_level.c:211:5:acconeer_main	40	static
+../Src/ref_app_tank_level.c:314:6:sensor_calibration	72	static
+../Src/ref_app_tank_level.c:332:6:configure_close_range	16	static
+../Src/ref_app_tank_level.c:358:6:configure_mid_range	16	static
+../Src/ref_app_tank_level.c:384:6:configure_far_range	16	static
+../Src/ref_app_tank_level.c:412:6:record_background	40	static
+../Src/ref_app_tank_level.c:458:6:record_backgrounds	40	static
+../Src/ref_app_tank_level.c:505:6:measurement	32	static
+../Src/ref_app_tank_level.c:559:6:measure_close_range	48	static
+../Src/ref_app_tank_level.c:592:6:measure_mid_range	48	static
+../Src/ref_app_tank_level.c:625:6:measure_far_range	48	static

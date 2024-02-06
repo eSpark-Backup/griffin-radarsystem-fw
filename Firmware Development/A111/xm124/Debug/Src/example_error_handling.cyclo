@@ -1,0 +1,4 @@
+example_error_handling.c:47:5:acconeer_main	10
+example_error_handling.c:158:6:print_data	4
+example_error_handling.c:179:6:handle_indication	5
+example_error_handling.c:257:6:restart_service	3

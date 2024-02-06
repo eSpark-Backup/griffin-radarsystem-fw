@@ -1,0 +1,3 @@
+example_multiple_service_usage.c:57:5:acconeer_main	14
+example_multiple_service_usage.c:205:6:print_envelope_data	4
+example_multiple_service_usage.c:222:6:print_sparse_data	3

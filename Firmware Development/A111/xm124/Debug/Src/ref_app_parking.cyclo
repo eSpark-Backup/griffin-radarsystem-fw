@@ -1,0 +1,5 @@
+ref_app_parking.c:123:5:acconeer_main	23
+ref_app_parking.c:272:6:service_recreate	4
+ref_app_parking.c:297:6:sensor_calibration	3
+ref_app_parking.c:315:6:configure_service	1
+ref_app_parking.c:327:6:parking_detection	16

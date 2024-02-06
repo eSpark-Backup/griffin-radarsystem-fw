@@ -1,0 +1,5 @@
+../Src/ref_app_parking.c:123:5:acconeer_main	120	static
+../Src/ref_app_parking.c:272:6:service_recreate	16	static
+../Src/ref_app_parking.c:297:6:sensor_calibration	72	static
+../Src/ref_app_parking.c:315:6:configure_service	16	static
+../Src/ref_app_parking.c:327:6:parking_detection	96	static
