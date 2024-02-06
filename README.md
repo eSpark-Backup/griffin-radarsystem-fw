@@ -46,7 +46,9 @@ Image of all items received
 - Upon detection of an approaching object, it activates the flatcoin vibration motor for 2 seconds.
 - A small board with an A111 radar system is aimed at the ground to establish a reference velocity.
 - The small board is positioned at an angle, as shown in the image below.
+ 
   ![small board position](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/e1aeab34-3b04-4bae-82f0-5eadd3d3931a)
+  
 - Detection by the small board starts from 5 feet away to accommodate potential arm or foot movements when the device is worn.
 - Similarly, detection by the master board begins from 5 feet away to avoid registering foot movements.
 - The main sensor is configured to detect objects within a maximum range of 20 meters.
