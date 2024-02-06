@@ -85,7 +85,13 @@ To establish the environment for software development, follow these steps or alt
 
    ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/623fdda2-a671-4fce-bfeb-97b022614961)
 
-2. After downloading the SDKs you can follow the following [document A121](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A121/doc/XM125%20Software%20User%20Guide.pdf) from page number 7 and [document A111](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A111/xm124/doc/XM124%20Software%20Development%20Guide.pdf) from page number 6 to set up your STM32 Cube IDE for the development. 
+2. After downloading the SDKs you can follow the following [document A121](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A121/doc/XM125%20Software%20User%20Guide.pdf) from page number 7 and [document A111](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A111/xm124/doc/XM124%20Software%20Development%20Guide.pdf) from page number 6 to set up your STM32 Cube IDE for the development.
+
+Note: STM32 CubeIDE needs the following GNU Toolchain to run the project.
+
+  ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/cc63b09f-f289-48bb-9fd6-82c8e9be8a9f)
+ 
+
 ## Firmware
 
 ### Master Firmware
