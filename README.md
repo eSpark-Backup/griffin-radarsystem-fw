@@ -85,8 +85,7 @@ To establish the environment for software development, follow these steps or alt
 
    ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/623fdda2-a671-4fce-bfeb-97b022614961)
 
-2. After downloading the SDKs you can follow the following [document](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125/doc/XM125%20Software%20User%20Guide.pdf) from page number 7 to set up your STM32 Cube IDE for the development. This document is for XM125 but the same steps will be followed for the XM124 module.
-
+2. After downloading the SDKs you can follow the following [document A121](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A121/doc/XM125%20Software%20User%20Guide.pdf) from page number 7 and [document A111](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A111/xm124/doc/XM124%20Software%20Development%20Guide.pdf) from page number 6 to set up your STM32 Cube IDE for the development. 
 ## Firmware
 
 ### Master Firmware
@@ -96,10 +95,11 @@ To establish the environment for software development, follow these steps or alt
 ### Slave Firmware 
 
 [Slave Firmware (A121) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125)
+
 [Slave Firmware (A111) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A111)
 
 Note:
-  For flashing the code on the XM124 module we need to use the STM32 programmer. Follow this [Link](https://www.st.com/resource/en/user_manual/um2237-stm32cubeprogrammer-software-description-stmicroelectronics.pdf)
+  For flashing the code on the XM124 module we need to use the STM32 programmer. Follow this [Link](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/A121/doc/um2237-stm32cubeprogrammer-software-description-stmicroelectronics.pdf)
   
 ## Acconeer Support and Their Exploration Tool:
 
