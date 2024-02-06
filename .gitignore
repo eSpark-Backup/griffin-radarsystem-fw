@@ -1,8 +1,28 @@
+#settings
+.settings/
+
+#metadata
+.metadata/
+
+#Debug
+Debug/
+debug/
+Release/
+release
+
+# Prerequisites
+*.d
+
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
 
 # Libraries
 *.lib
@@ -10,7 +30,7 @@
 *.la
 *.lo
 
-# Shared objects (inc. Windows DLLs)
+# Shared objects
 *.dll
 *.so
 *.so.*
@@ -23,23 +43,10 @@
 *.i*86
 *.x86_64
 *.hex
+*.bin
 
-# Misc
-*.map
-*.m
-*.png
-
-# Eclipse CDT project files
-.cproject
-.project
-.settings/
-
-# Vagrant directory
-.vagrant/
-
-# Include makefiles
-!Makefile
-*~
-
-# Libraries
-/lib
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
