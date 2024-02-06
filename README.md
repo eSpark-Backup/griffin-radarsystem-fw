@@ -59,7 +59,45 @@ Image of all items received
 
 ### Master Board
 
-Since the master board provided by the client is not functioning, as detailed in the 'Hardware Summary,' we are employing the STM32 Nucleo board with the XE125 development kit, following the schematic of the custom board (master).
+Since the master board provided by the client is not functioning, as detailed in the 'Hardware Summary,' we are employing the STM32 Nucleo board with the XE125 development kit, following the schematic of the custom board (master) [Master PCB](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/blob/main/docs/pcb%20schematic.pdf). As shown in the PCB the controller has been communicating with the Module XM125 over I2C.
+
+### Small Board
+
+The small board just contains module XM124 module with the header as shown in the schematic below:
+
+![Small Board Schematic](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/76909080/50f3a983-dfff-4cc3-84c0-5a1f07cfa45c)
+
+Since the board requires 1.8 volts and the USB to UART converter (CP201x) works on 3v3 or 5 volts therefore we have to bridge a level shifter between the board and the CP201x. The connections are shown in the image below:
+
+![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/2dcdac32-645a-4666-9dd1-a8c34cc4ec8b)
+
+## Software setup
+
+1. First we need to install SDKs from [SDK](https://developer.acconeer.com/) for both A111 and A121
+
+   Install for A111 
+
+   ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/5242f7db-14c0-4176-8e1c-8b4c5b66816e)
+
+   Install for A121
+
+   ![image](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/assets/131872950/623fdda2-a671-4fce-bfeb-97b022614961)
+
+
+
+## Firmware
+
+### Master Firmware
+
+[Master Firmware](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/Master%20Firmware/RADAR)
+
+### Slave Firmware 
+
+[Slave Firmware (XM125) ](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Firmware%20Development/xm125)
+
+
+
+
 
   
 
