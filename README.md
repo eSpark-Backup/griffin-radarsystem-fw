@@ -111,6 +111,9 @@ Follow the following YouTube tutorials regarding the [Exploration tool](https://
 
 [A111](https://www.youtube.com/watch?v=WKVoFGJzubs&t=266s)
 
+## Data Sheets
+
+You can find the required [data sheets](https://github.com/eSpark-Consultants/griffin-radarsystem-fw/tree/1-firmware-development-for-approacing-object-detection-v10/Data%20Sheets).
 
 
 
