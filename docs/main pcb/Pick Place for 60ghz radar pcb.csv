@@ -1,0 +1,64 @@
+Altium Designer Pick and Place Locations
+C:\Users\shourav\OneDrive\Projects and designs\Altium Designer\Projects\Jan-June(2024)\60ghz radar pcb\Project Outputs for 60ghz radar pcb\Pick Place for 60ghz radar pcb.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       21/01/24
+Time:       23:45
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Footprint","Center-X(mm)","Center-Y(mm)","Rotation","Description"
+"IC2","STM32L433CCU6","TopLayer","QFN50P700X700X60-49N-D","50.4392","32.6790","0","Integrated Circuit"
+"J12","10144041-10011LF","BottomLayer","AMPHENOL_10144041-10011LF","40.8686","27.9118","180",""
+"R15","100k","BottomLayer","SMD-0402-RES","55.0418","34.8742","180","RES SMD 100K OHM 5% 1/10W 0402"
+"R10","100k","BottomLayer","SMD-0402-RES","53.1876","34.7726","180","RES SMD 100K OHM 5% 1/10W 0402"
+"U4","MAX16054AZT+T","BottomLayer","FP-Z6-1-IPC_A","30.1496","41.2438","270","IC INTFACE SPECIALIZED TSOT23-6"
+"SW1","EVQ-P7A01P","BottomLayer","FP-EVQ-P7A01P-MFG","27.4440","36.0190","90","SWITCH TACTILE SPST-NO 0.05A 12V"
+"R8","10k","BottomLayer","SMD-0402-RES","30.7046","44.5426","270","RES SMD 10K OHM 5% 1/10W 0402"
+"R7","330","BottomLayer","SMD-0402-RES","28.5824","31.7460","282","RES SMD 330 OHM 1% 1/10W 0402"
+"R4","10k","TopLayer","SMD-0402-RES","44.2254","28.0850","270","RES SMD 10K OHM 5% 1/10W 0402"
+"R3","10k","TopLayer","SMD-0402-RES","47.9332","38.0460","180","RES SMD 10K OHM 5% 1/10W 0402"
+"C16","0.10µF","TopLayer","SMD-0402C","52.5272","28.1178","270","CAP CER 0.1UF 16V X7R 0402"
+"C13","1µF","TopLayer","SMD-0402C","45.0342","35.5092","270","CAP CER 1UF 10V X7S 0402"
+"C18","4.7µF","TopLayer","SMD-0402C","47.1124","38.0476","180","CAP CER 4.7UF 6.3V X5R 0402"
+"C17","0.10µF","TopLayer","SMD-0402C","55.0418","36.0426","180","CAP CER 0.1UF 16V X7R 0402"
+"R2","3.3k","TopLayer","SMD-0402-RES","46.1586","40.6642","90","RES SMD 3.3K OHM 5% 1/10W 0402"
+"U1","MCP73831T-2ACI/OT","TopLayer","FP-C04-091-OT-IPC_B","47.5566","43.1812","180","IC CONTROLLR LI-ION 4.2V SOT23-5"
+"R1","DNP","TopLayer","SMD-0402-RES","48.2906","40.7840","270","RES SMD 10K OHM 5% 1/10W 0402"
+"C1","4.7µF","TopLayer","SMD-0402C","47.0790","45.4642","90","CAP CER 4.7UF 10V X5R 0402"
+"C2","4.7µF","TopLayer","SMD-0402C","50.4432","43.3810","0","CAP CER 4.7UF 10V X5R 0402"
+"U3","LM3671MF-3.3/NOPB","TopLayer","FP-DBV0005A-IPC_C","31.7754","39.9796","90","IC REG BUCK 3.3V 600MA SOT23-5"
+"L2","MLZ2012N2R2LT000","TopLayer","FP-MLZ2012-0_85-IPC_A","31.7754","43.2816","0","Shielded Multilayer Inductor 2.2uH ±20% 800mA 156mO SMD 0805"
+"C12","8pF","TopLayer","SMD-0402C","41.7576","37.3888","0","CAP CER 8PF 50V NP0 0402"
+"C11","8pF","TopLayer","SMD-0402C","36.9570","37.3634","0","CAP CER 8PF 50V NP0 0402"
+"C10","1µF","TopLayer","SMD-0402C","37.3126","28.6258","0","CAP CER 1UF 10V X7S 0402"
+"C9","1µF","TopLayer","SMD-0402C","36.1442","37.3634","180","CAP CER 1UF 10V X7S 0402"
+"C8","1µF","TopLayer","SMD-0402C","42.1386","34.8234","90","CAP CER 1UF 10V X7S 0402"
+"C7","22µF","TopLayer","SMD-0603C","34.0360","40.2336","0","CAP CER 22UF 6.3V X5R 0603"
+"C6","22µF","TopLayer","SMD-0603C","31.5468","37.5412","90","CAP CER 22UF 6.3V X5R 0603"
+"Y3","ECS-240-8-36-RWN-TR3","TopLayer","XTAL_ECS-240-8-36-RWN-TR3","39.1594","37.4610","180",""
+"Y2","ECS-80-12-33-JGN-TR","TopLayer","XTAL_ECS-240-8-33-AGN-TR","43.4344","30.9732","270","The sub miniature ECX-32 is a compact SMD Crystal. The 3.2 x 2.5 x 0.8 mm ceramic package is ideal for todayâ€™s SMD manufacturing environment."
+"Y1","ECS-.327-12.5-16-TR","TopLayer","XTAL_ECS-.327-12.5-16-TR","45.0988","34.1470","270","SMD Tuning Fork Crystal"
+"U2","LM3671MF-1.8/NOPB","TopLayer","FP-DBV0005A-IPC_A","31.4706","32.6644","270","IC REG BUCK 1.8V 600MA SOT23-5"
+"R6","5.1k","TopLayer","SMD-0402-RES","40.4368","39.9542","180","RES SMD 5.1K OHM 5% 1/10W 0402"
+"R5","5.1k","TopLayer","SMD-0402-RES","43.1800","42.9514","270","RES SMD 5.1K OHM 5% 1/10W 0402"
+"L1","MLZ2012N2R2LT000","TopLayer","FP-MLZ2012-0_85-IPC_A","31.5214","28.6512","180","Shielded Multilayer Inductor 2.2uH ±20% 800mA 156mO SMD 0805"
+"J1","USB4120-03-C_REVA","BottomLayer","GCT_USB4120-03-C_REVA","40.9940","43.0350","180",""
+"IC3","A121-001-T&R","TopLayer","A121001TR","38.0670","32.4862","90","Integrated Circuit"
+"C5","1µF","TopLayer","SMD-0402C","39.8346","28.6298","0","CAP CER 1UF 10V X7S 0402"
+"C4","22µF","TopLayer","SMD-0603C","28.8798","32.0548","180","CAP CER 22UF 6.3V X5R 0603"
+"C3","10µF","TopLayer","SMD-0402C","31.3944","35.7886","270","CAP CER 10UF 6.3V X5R 0402"
+"C14","0.10µF","BottomLayer","SMD-0402C","51.9084","42.4496","0","CAP CER 0.1UF 16V X7R 0402"
+"C15","0.10µF","TopLayer","SMD-0402C","53.5130","40.7306","0","CAP CER 0.1UF 16V X7R 0402"
+"Q3","SI2312BDS-T1-BE3","BottomLayer","SOT95P237X112-3N","49.8468","44.0472","0","MOSFET (N-Channel)"
+"Q2","NX3008PBK,215","TopLayer","NXP-SOT23_N","51.1090","39.7866","270","P-Channel Trench MOSFET, -30 V, -0.23 A, -55 to 150 degC, 3-Pin SOT23, Tape and Reel"
+"R12","100k","TopLayer","SMD-0402-RES","53.5866","38.6914","180","RES SMD 100K OHM 5% 1/10W 0402"
+"R11","470","BottomLayer","SMD-0402-RES","47.1594","42.4696","0","RES SMD 470 OHM 1% 1/10W 0402"
+"R9","1M","TopLayer","SMD-0402-RES","51.6328","43.3498","0","RES SMD 1M OHM 5% 1/10W 0402"
+"R14","100k","TopLayer","SMD-0402-RES","55.0134","38.6962","0","RES SMD 100K OHM 5% 1/10W 0402"
+"R13","10k","BottomLayer","SMD-0402-RES","47.1734","44.5314","180","RES SMD 10K OHM 5% 1/10W 0402"
+"D1","BAT54-02V","BottomLayer","INF-SC79_V","51.0594","42.4528","90","Silicon Schottky Diode, SC79, Reel, Green"
+"LED1","IN-S63TBS5R5G5B","BottomLayer","INS63TBS5R5G5B","26.6759","31.5805","12","LED"

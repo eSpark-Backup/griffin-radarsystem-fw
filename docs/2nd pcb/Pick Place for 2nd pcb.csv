@@ -1,0 +1,22 @@
+Altium Designer Pick and Place Locations
+C:\Users\shourav\OneDrive\Projects and designs\Altium Designer\Projects\Jan-June(2024)\60ghz radar 2nd pcb\Project Outputs for 60ghz radar 2nd pcb\Pick Place for 2nd pcb.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       21/01/24
+Time:       23:51
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Center-X(mm)","Center-Y(mm)","Rotation"
+"Y1","ECS-240-8-36-RWN-TR3","TopLayer","40.9086","27.6726","270"
+"J1","10144041-10011LF","BottomLayer","37.4594","33.0360","90"
+"IC1","A121-001-T&R","TopLayer","41.4280","33.8250","0"
+"C3","1µF","TopLayer","37.6920","34.6242","270"
+"C5","8pF","TopLayer","38.2690","26.7042","270"
+"C4","8pF","TopLayer","43.0536","27.1910","0"
+"C1","1µF","BottomLayer","43.7762","29.2826","180"
+"C6","1µF","BottomLayer","42.7634","29.2706","180"
+"C2","1µF","BottomLayer","43.6030","38.0930","0"

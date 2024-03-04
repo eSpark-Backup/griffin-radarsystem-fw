@@ -1,0 +1,7 @@
+Quantity,Designator,Comment,Description,Footprint
+
+"4","C1, C2, C3, C6","1µF","CAP CER 1UF 10V X7S 0402","SMD-0402C"
+"2","C4, C5","8pF","CAP CER 8PF 50V NP0 0402","SMD-0402C"
+"1","IC1","A121-001-T&R","Integrated Circuit","A121001TR"
+"1","J1","10144041-10011LF","","AMPHENOL_10144041-10011LF"
+"1","Y1","ECS-240-8-36-RWN-TR3","","XTAL_ECS-240-8-36-RWN-TR3"
