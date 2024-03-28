@@ -63,6 +63,7 @@ ETH_TxPacketConfig TxConfig;
 ETH_HandleTypeDef heth;
 
 I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c2;
 
 UART_HandleTypeDef huart3;
 
@@ -77,6 +78,7 @@ static void MX_ETH_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_USB_OTG_HS_USB_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_I2C2_Init(void);
 /* USER CODE BEGIN PFP */
 #ifdef __GNUC__
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
@@ -114,6 +116,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	  volatile HAL_StatusTypeDef ret1;
+	  volatile HAL_StatusTypeDef ret_3;
 
   /* USER CODE END 1 */
 
@@ -124,6 +127,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   	  RxData rxData;
+  	  RxData rxData_2; //for angle sensor
 	 uint8_t Buffer[25] = {0};
 	 uint8_t Space[] = " - ";
 	 uint8_t StartMSG[] = "Starting I2C Scanning: \r\n";
@@ -134,7 +138,8 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  uint8_t i = 0, ret;
+  uint8_t i = 0, ret , ret_2;
+
 
   /* USER CODE END SysInit */
 
@@ -144,6 +149,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_HS_USB_Init();
   MX_I2C1_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
   HAL_Delay(1000);
 
@@ -151,16 +157,27 @@ int main(void)
   HAL_UART_Transmit(&huart3, StartMSG, sizeof(StartMSG), 10000);
   for(i=1; i<128; i++)
   {
-      ret = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 3, 5);
-      if (ret != HAL_OK) /* No ACK Received At That Address */
-      {
-          HAL_UART_Transmit(&huart3, Space, sizeof(Space), 10000);
-      }
-      else if(ret == HAL_OK)
-      {
-          sprintf(Buffer, "0x%X", i);
-          HAL_UART_Transmit(&huart3, Buffer, sizeof(Buffer), 10000);
-      }
+		ret = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 3, 5);
+		ret_2 = HAL_I2C_IsDeviceReady(&hi2c2, (uint16_t)(i<<1), 3, 5);
+		if (ret != HAL_OK) /* No ACK Received At That Address */
+		{
+		  HAL_UART_Transmit(&huart3, Space, sizeof(Space), 10000);
+		}
+		else if(ret == HAL_OK)
+		{
+		  sprintf(Buffer, "0x%X", i);
+		  HAL_UART_Transmit(&huart3, Buffer, sizeof(Buffer), 10000);
+		}
+
+		if (ret_2 != HAL_OK) /* No ACK Received At That Address */
+		{
+			HAL_UART_Transmit(&huart3, Space, sizeof(Space), 10000);
+		}
+		else if(ret_2 == HAL_OK)
+		{
+			sprintf(Buffer, "0x%X", i);
+			HAL_UART_Transmit(&huart3, Buffer, sizeof(Buffer), 10000);
+		}
   }
   HAL_UART_Transmit(&huart3, EndMSG, sizeof(EndMSG), 10000);
   /*--[ Scanning Done ]--*/
@@ -168,7 +185,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint16_t slaveADDR = 0x52<<1;
+  uint16_t slaveADDR = 0x20<<1;
+  uint16_t slaveADDR_2 = 0x55<<1;
 //  uint8_t TxData[6] = {7, 2, 3, 4, 5,9};
 //  float rxdata;
 
@@ -176,8 +194,13 @@ int main(void)
   {
 //	  HAL_I2C_Master_Transmit(&hi2c1, slaveADDR, TxData, 6, HAL_MAX_DELAY);
 	  memset(&rxData , 0 , sizeof(RxData));
+	  memset(&rxData_2 , 0 , sizeof(RxData));
 
 	  ret1 = HAL_I2C_Master_Receive(&hi2c1, slaveADDR, (uint8_t*)&rxData, sizeof(RxData) , HAL_MAX_DELAY);
+	  ret_3 = HAL_I2C_Master_Receive(&hi2c1, slaveADDR_2, (uint8_t*)&rxData_2, sizeof(rxData_2) , HAL_MAX_DELAY);// angle sensor
+
+	  //===================================================================***For Front sensor***
+
       if ( ret1 != HAL_OK )
       {
         printf("Error Rx\r\n");
@@ -186,12 +209,43 @@ int main(void)
       {
 //    	  for (int i=0; i<6; i++)
 //    	  {
-    		  printf("Speed: %f Maximum Index: %d   Number distances: %d\n", rxData.speed , rxData.maxindex , rxData.numDistances);
+
+    		  printf("Speed: %f Maximum Index_F: %d   Number distances_F: %d\n", rxData.speed , rxData.maxindex , rxData.numDistances);
     		  if(rxData.numDistances)
     		  {
 				  for(int i=0; i<rxData.numDistances ; i++)
 				  {
-					  printf("num distances: %d measured Distance: %f\n", rxData.numDistances , rxData.distanceArray[i]);
+					  printf("num distances_F: %d measured Distance_F: %f\n", rxData.numDistances , rxData.distanceArray[i]);
+					  float distance_1 = rxData.distanceArray[i];
+					  if ( distance_1 >= 0.15 && distance_1 <= 20)//distance_1 >= 1.5 && distance_1 <= 20
+					  {
+						  printf("The front Sensor is detecting in between 1.5m and 20m %f :, the Velocity is %f :  ", distance_1, rxData.speed);
+					  }
+				  }
+    		  }
+//    	  }
+      }
+
+      //=========================================================================***For Angle sensor***
+      if ( ret_3 != HAL_OK )
+      	        {
+      	          printf("Error Rx_3\r\n");
+      	        }
+      else
+      {
+//    	  for (int i=0; i<6; i++)
+//    	  {
+    		  printf("Speed: %f Maximum Index_2_A: %d   Number distances_2_A: %d\n", rxData_2.speed , rxData_2.maxindex , rxData_2.numDistances);// angle sensor
+    		  if(rxData_2.numDistances)
+    		  {
+				  for(int i=0; i<rxData_2.numDistances ; i++)
+				  {
+					  printf("num distances_A: %d measured Distance_A: %f\n", rxData_2.numDistances , rxData_2.distanceArray[i]);
+					  uint8_t distance_1 = rxData_2.distanceArray[i];
+					  if ( distance_1 >= 1.5 && distance_1 <= 5) //distance_1 >= 1.5 && distance_1 <= 5
+					  {
+						  printf("The Angle Sensor is detecting in between 1.5m and 5m %d :, the Velocity is %f :  ", distance_1, rxData_2.speed);
+					  }
 				  }
     		  }
 //    	  }
@@ -364,6 +418,54 @@ static void MX_I2C1_Init(void)
 }
 
 /**
+  * @brief I2C2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C2_Init(void)
+{
+
+  /* USER CODE BEGIN I2C2_Init 0 */
+
+  /* USER CODE END I2C2_Init 0 */
+
+  /* USER CODE BEGIN I2C2_Init 1 */
+
+  /* USER CODE END I2C2_Init 1 */
+  hi2c2.Instance = I2C2;
+  hi2c2.Init.Timing = 0x60404E72;
+  hi2c2.Init.OwnAddress1 = 0;
+  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c2.Init.OwnAddress2 = 0;
+  hi2c2.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c2, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c2, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C2_Init 2 */
+
+  /* USER CODE END I2C2_Init 2 */
+
+}
+
+/**
   * @brief USART3 Initialization Function
   * @param None
   * @retval None
@@ -445,6 +547,7 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();

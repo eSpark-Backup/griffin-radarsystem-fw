@@ -100,6 +100,7 @@ void Error_Handler(void);
 #define MISC_GPIO1_GPIO_Port GPIOA
 #define UART_RTS_Pin GPIO_PIN_1
 #define UART_RTS_GPIO_Port GPIOA
+
 /* USER CODE BEGIN Private defines */
 
 #define A121_SPI_HANDLE     hspi1
@@ -120,5 +121,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

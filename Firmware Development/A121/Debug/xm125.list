@@ -29,27 +29,27 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  12 .comment      0000008f  00000000  00000000  000303a4  2**0
                   CONTENTS, READONLY
- 13 .debug_info   000641e6  00000000  00000000  00030433  2**0
+ 13 .debug_info   000641e5  00000000  00000000  00030433  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 0000d587  00000000  00000000  00094619  2**0
+ 14 .debug_abbrev 0000d56e  00000000  00000000  00094618  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 000029b0  00000000  00000000  000a1ba0  2**3
+ 15 .debug_aranges 000029b0  00000000  00000000  000a1b88  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 000011e4  00000000  00000000  000a4550  2**0
+ 16 .debug_rnglists 000011e4  00000000  00000000  000a4538  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000251b0  00000000  00000000  000a5734  2**0
+ 17 .debug_macro  000251b0  00000000  00000000  000a571c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0003853d  00000000  00000000  000ca8e4  2**0
+ 18 .debug_line   0003853d  00000000  00000000  000ca8cc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000e147f  00000000  00000000  00102e21  2**0
+ 19 .debug_str    000e147f  00000000  00000000  00102e09  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  0000b590  00000000  00000000  001e42a0  2**2
+ 20 .debug_frame  0000b590  00000000  00000000  001e4288  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000007c  00000000  00000000  001ef830  2**0
+ 21 .debug_line_str 0000007c  00000000  00000000  001ef818  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_loc    000284ea  00000000  00000000  001ef8ac  2**0
+ 22 .debug_loc    000284ea  00000000  00000000  001ef894  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_ranges 000061f8  00000000  00000000  00217d96  2**0
+ 23 .debug_ranges 000061f8  00000000  00000000  00217d7e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -19224,6 +19224,7 @@ void SystemClock_Config(void)
     Error_Handler();
  8007584:	f000 fa94 	bl	8007ab0 <Error_Handler>
   }
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -19271,6 +19272,7 @@ void SystemClock_Config(void)
     Error_Handler();
  80075c6:	f000 fa73 	bl	8007ab0 <Error_Handler>
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -19331,9 +19333,9 @@ static void MX_I2C2_Init(void)
  8007606:	4b1a      	ldr	r3, [pc, #104]	; (8007670 <MX_I2C2_Init+0x74>)
  8007608:	4a1b      	ldr	r2, [pc, #108]	; (8007678 <MX_I2C2_Init+0x7c>)
  800760a:	605a      	str	r2, [r3, #4]
-  hi2c2.Init.OwnAddress1 = 164;
+  hi2c2.Init.OwnAddress1 = 170;
  800760c:	4b18      	ldr	r3, [pc, #96]	; (8007670 <MX_I2C2_Init+0x74>)
- 800760e:	22a4      	movs	r2, #164	; 0xa4
+ 800760e:	22aa      	movs	r2, #170	; 0xaa
  8007610:	609a      	str	r2, [r3, #8]
   hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
  8007612:	4b17      	ldr	r3, [pc, #92]	; (8007670 <MX_I2C2_Init+0x74>)
@@ -19369,6 +19371,7 @@ static void MX_I2C2_Init(void)
     Error_Handler();
  8007642:	f000 fa35 	bl	8007ab0 <Error_Handler>
   }
+
   /** Configure Analogue filter
   */
   if (HAL_I2CEx_ConfigAnalogFilter(&hi2c2, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
@@ -19382,6 +19385,7 @@ static void MX_I2C2_Init(void)
     Error_Handler();
  8007654:	f000 fa2c 	bl	8007ab0 <Error_Handler>
   }
+
   /** Configure Digital filter
   */
   if (HAL_I2CEx_ConfigDigitalFilter(&hi2c2, 0) != HAL_OK)
@@ -19439,9 +19443,9 @@ static void MX_RTC_Init(void)
  800769a:	2100      	movs	r1, #0
  800769c:	4618      	mov	r0, r3
  800769e:	f00d fe83 	bl	80153a8 <memset>
-  /* USER CODE BEGIN RTC_Init 1 */
 
   /* USER CODE END RTC_Init 1 */
+
   /** Initialize RTC Only
   */
   hrtc.Instance = RTC;
@@ -19544,6 +19548,7 @@ static void MX_RTC_Init(void)
     Error_Handler();
  8007742:	f000 f9b5 	bl	8007ab0 <Error_Handler>
   }
+
   /** Enable the Alarm A
   */
   sAlarm.AlarmTime.Hours = 0;
@@ -19933,6 +19938,8 @@ static void MX_GPIO_Init(void)
  8007954:	609a      	str	r2, [r3, #8]
  8007956:	60da      	str	r2, [r3, #12]
  8007958:	611a      	str	r2, [r3, #16]
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -20123,6 +20130,8 @@ static void MX_GPIO_Init(void)
  8007a96:	2028      	movs	r0, #40	; 0x28
  8007a98:	f7f9 fd0f 	bl	80014ba <HAL_NVIC_EnableIRQ>
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
  8007a9c:	bf00      	nop
  8007a9e:	3720      	adds	r7, #32
@@ -20227,9 +20236,9 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
  8007b2a:	4a27      	ldr	r2, [pc, #156]	; (8007bc8 <HAL_I2C_MspInit+0xc8>)
  8007b2c:	4293      	cmp	r3, r2
  8007b2e:	d146      	bne.n	8007bbe <HAL_I2C_MspInit+0xbe>
-  /* USER CODE BEGIN I2C2_MspInit 0 */
 
   /* USER CODE END I2C2_MspInit 0 */
+
   /** Initializes the peripherals clock
   */
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C2;
@@ -20353,9 +20362,9 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef* hrtc)
  8007bee:	4a17      	ldr	r2, [pc, #92]	; (8007c4c <HAL_RTC_MspInit+0x78>)
  8007bf0:	4293      	cmp	r3, r2
  8007bf2:	d127      	bne.n	8007c44 <HAL_RTC_MspInit+0x70>
-  /* USER CODE BEGIN RTC_MspInit 0 */
 
   /* USER CODE END RTC_MspInit 0 */
+
   /** Initializes the peripherals clock
   */
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC;
@@ -20652,9 +20661,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
  8007dbe:	4a6d      	ldr	r2, [pc, #436]	; (8007f74 <HAL_UART_MspInit+0x1e0>)
  8007dc0:	4293      	cmp	r3, r2
  8007dc2:	d13a      	bne.n	8007e3a <HAL_UART_MspInit+0xa6>
-  /* USER CODE BEGIN USART1_MspInit 0 */
 
   /* USER CODE END USART1_MspInit 0 */
+
   /** Initializes the peripherals clock
   */
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1;
@@ -21108,7 +21117,7 @@ void EXTI3_IRQHandler(void)
   /* USER CODE BEGIN EXTI3_IRQn 0 */
 
   /* USER CODE END EXTI3_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
+  HAL_GPIO_EXTI_IRQHandler(INTERRUPT_Pin);
  8007ffc:	2008      	movs	r0, #8
  8007ffe:	f7f9 fe15 	bl	8001c2c <HAL_GPIO_EXTI_IRQHandler>
   /* USER CODE BEGIN EXTI3_IRQn 1 */
@@ -21299,7 +21308,7 @@ void EXTI15_10_IRQHandler(void)
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
   /* USER CODE END EXTI15_10_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+  HAL_GPIO_EXTI_IRQHandler(WAKE_UP_Pin);
  8008098:	f44f 6000 	mov.w	r0, #2048	; 0x800
  800809c:	f7f9 fdc6 	bl	8001c2c <HAL_GPIO_EXTI_IRQHandler>
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
