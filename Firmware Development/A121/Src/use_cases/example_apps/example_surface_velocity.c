@@ -234,6 +234,7 @@ int acconeer_main(int argc, char *argv[])
     acc_cal_result_t sensor_cal_result;
 
 	uint8_t counter = 0;
+	bool complete_cal = false;
 
 	while(true)
 
@@ -259,13 +260,16 @@ int acconeer_main(int argc, char *argv[])
 			cleanup(&resources);
 			return EXIT_FAILURE;
 		}
-
-		if (!do_full_detector_calibration(&resources, &sensor_cal_result))
-		{
-			printf("Detector calibration failed\n");
-			cleanup(&resources);
-			return EXIT_FAILURE;
-		}
+        if(!complete_cal)
+        {
+			if (!do_full_detector_calibration(&resources, &sensor_cal_result))
+			{
+				printf("Detector calibration failed\n");
+				cleanup(&resources);
+				return EXIT_FAILURE;
+			}
+			complete_cal = true;
+        }
 
 
 		if (!do_detector_get_next(&resources, &sensor_cal_result, &result))
@@ -285,7 +289,7 @@ int acconeer_main(int argc, char *argv[])
 			}
 		}
 
-//		print_distance_result(&result);
+		print_distance_result(&result);
 		acc_sensor_destroy(resources.sensor);
 
 		}
@@ -359,8 +363,8 @@ int acconeer_main(int argc, char *argv[])
 				speed = 0;
 			}
 //			printf("speed: %f\t magnitudeValue: %f\t speedIndex: %d\n" , speed , fft_magnitudes->data[max_magnitude_index], max_magnitude_index);
-
-
+//
+//
 //			printf("Speed index: %" PRIi32 ",  Magnitude: %" PRIfloat " Speed: %" PRIfloat " km/h\n",
 //			       max_magnitude_index,
 //			       ACC_LOG_FLOAT_TO_INTEGER(fft_magnitudes->data[max_magnitude_index]),

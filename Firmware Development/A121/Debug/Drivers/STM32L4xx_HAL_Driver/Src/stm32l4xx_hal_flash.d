@@ -1,7 +1,7 @@
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o: \
  ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/stm32l4xx_hal_conf.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h \
@@ -33,7 +33,7 @@ Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o: \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/stm32l4xx_hal_conf.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/stm32l4xx_hal_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h:

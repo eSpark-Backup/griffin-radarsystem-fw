@@ -1,9 +1,9 @@
 Src/use_cases/example_apps/example_surface_velocity.o: \
  ../Src/use_cases/example_apps/example_surface_velocity.c \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/i2c_slave.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/main.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/i2c_slave.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/stm32l4xx_hal_conf.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h \
@@ -34,32 +34,32 @@ Src/use_cases/example_apps/example_surface_velocity.o: \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_a121.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_common.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_hal_definitions_a121.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_hal_integration_a121.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_hal_definitions_a121.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration_log.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_rss_a121.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_version.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_processing_helpers.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_control_helper.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_processing.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config_subsweep.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_control_helper.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_a121.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance_definitions.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration.h \
- C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/i2c_slave.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/main.h:
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_config.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_definitions_a121.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_definitions_common.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_hal_definitions_a121.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_hal_integration_a121.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_hal_definitions_a121.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_integration_log.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_integration.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_rss_a121.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_config.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_version.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_processing_helpers.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_control_helper.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_processing.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_config_subsweep.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_sensor.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_control_helper.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_definitions_a121.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_detector_distance.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_detector_distance_definitions.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_integration.h \
+ C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_sensor.h
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/i2c_slave.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/stm32l4xx_hal_conf.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/stm32l4xx_hal_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h:
@@ -90,25 +90,25 @@ C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_a121.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_common.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_hal_definitions_a121.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_hal_integration_a121.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_hal_definitions_a121.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration_log.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_rss_a121.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_version.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_processing_helpers.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_control_helper.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_processing.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_config_subsweep.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_control_helper.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_definitions_a121.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_detector_distance_definitions.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_integration.h:
-C:/Users/classic/Github_Clone/griffin-radarsystem-fw/Firmware\ Development/xm125/Inc/acc_sensor.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_config.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_definitions_a121.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_definitions_common.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_hal_definitions_a121.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_hal_integration_a121.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_hal_definitions_a121.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_integration_log.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_integration.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_rss_a121.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_config.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_version.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_processing_helpers.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_control_helper.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_processing.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_config_subsweep.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_sensor.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_control_helper.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_definitions_a121.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_detector_distance.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_detector_distance_definitions.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_integration.h:
+C:/Users/Windows/Documents/Github/griffin-radarsystem-fw/Firmware\ Development/A121/Inc/acc_sensor.h:
