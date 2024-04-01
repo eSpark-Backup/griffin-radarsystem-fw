@@ -19333,9 +19333,9 @@ static void MX_I2C2_Init(void)
  8007606:	4b1a      	ldr	r3, [pc, #104]	; (8007670 <MX_I2C2_Init+0x74>)
  8007608:	4a1b      	ldr	r2, [pc, #108]	; (8007678 <MX_I2C2_Init+0x7c>)
  800760a:	605a      	str	r2, [r3, #4]
-  hi2c2.Init.OwnAddress1 = 170;
+  hi2c2.Init.OwnAddress1 = 64;
  800760c:	4b18      	ldr	r3, [pc, #96]	; (8007670 <MX_I2C2_Init+0x74>)
- 800760e:	22aa      	movs	r2, #170	; 0xaa
+ 800760e:	2240      	movs	r2, #64	; 0x40
  8007610:	609a      	str	r2, [r3, #8]
   hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
  8007612:	4b17      	ldr	r3, [pc, #92]	; (8007670 <MX_I2C2_Init+0x74>)
@@ -23272,11 +23272,11 @@ int acconeer_main(int argc, char *argv[])
  8008df2:	e228      	b.n	8009246 <acconeer_main+0x91a>
 	}
 //
-	set_config(resources.config, DISTANCE_PRESET_CONFIG_BALANCED);
+	set_config(resources.config, DISTANCE_PRESET_CONFIG_HIGH_ACCURACY);
  8008df4:	f507 730a 	add.w	r3, r7, #552	; 0x228
  8008df8:	f5a3 73b0 	sub.w	r3, r3, #352	; 0x160
  8008dfc:	685b      	ldr	r3, [r3, #4]
- 8008dfe:	2101      	movs	r1, #1
+ 8008dfe:	2102      	movs	r1, #2
  8008e00:	4618      	mov	r0, r3
  8008e02:	f000 fa5a 	bl	80092ba <set_config>
 //

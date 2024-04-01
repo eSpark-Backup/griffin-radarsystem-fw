@@ -211,7 +211,7 @@ int acconeer_main(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 //
-	set_config(resources.config, DISTANCE_PRESET_CONFIG_BALANCED);
+	set_config(resources.config, DISTANCE_PRESET_CONFIG_HIGH_ACCURACY);
 //
 	if (!initialize_detector_resources(&resources))
 	{

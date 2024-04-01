@@ -217,7 +217,7 @@ int main(void)
 				  {
 					  printf("num distances_F: %d measured Distance_F: %f\n", rxData.numDistances , rxData.distanceArray[i]);
 					  float distance_1 = rxData.distanceArray[i];
-					  if ( distance_1 >= 0.15 && distance_1 <= 20)//distance_1 >= 1.5 && distance_1 <= 20
+					  if ( distance_1 >= 1.5 && distance_1 <= 20)//distance_1 >= 1.5 && distance_1 <= 20
 					  {
 						  printf("The front Sensor is detecting in between 1.5m and 20m %f :, the Velocity is %f :  ", distance_1, rxData.speed);
 					  }
