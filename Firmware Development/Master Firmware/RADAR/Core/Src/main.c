@@ -63,7 +63,7 @@ ETH_TxPacketConfig TxConfig;
 ETH_HandleTypeDef heth;
 
 I2C_HandleTypeDef hi2c1;
-I2C_HandleTypeDef hi2c2;
+
 
 UART_HandleTypeDef huart3;
 
@@ -78,7 +78,6 @@ static void MX_ETH_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_USB_OTG_HS_USB_Init(void);
 static void MX_I2C1_Init(void);
-static void MX_I2C2_Init(void);
 /* USER CODE BEGIN PFP */
 #ifdef __GNUC__
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
@@ -116,7 +115,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	  volatile HAL_StatusTypeDef ret1;
-	  volatile HAL_StatusTypeDef ret_3;
+	  volatile HAL_StatusTypeDef ret2;
 
   /* USER CODE END 1 */
 
@@ -149,7 +148,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_HS_USB_Init();
   MX_I2C1_Init();
-  MX_I2C2_Init();
+
   /* USER CODE BEGIN 2 */
   HAL_Delay(1000);
 
@@ -158,7 +157,6 @@ int main(void)
   for(i=1; i<128; i++)
   {
 		ret = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 3, 5);
-		ret_2 = HAL_I2C_IsDeviceReady(&hi2c2, (uint16_t)(i<<1), 3, 5);
 		if (ret != HAL_OK) /* No ACK Received At That Address */
 		{
 		  HAL_UART_Transmit(&huart3, Space, sizeof(Space), 10000);
@@ -169,15 +167,6 @@ int main(void)
 		  HAL_UART_Transmit(&huart3, Buffer, sizeof(Buffer), 10000);
 		}
 
-		if (ret_2 != HAL_OK) /* No ACK Received At That Address */
-		{
-			HAL_UART_Transmit(&huart3, Space, sizeof(Space), 10000);
-		}
-		else if(ret_2 == HAL_OK)
-		{
-			sprintf(Buffer, "0x%X", i);
-			HAL_UART_Transmit(&huart3, Buffer, sizeof(Buffer), 10000);
-		}
   }
   HAL_UART_Transmit(&huart3, EndMSG, sizeof(EndMSG), 10000);
   /*--[ Scanning Done ]--*/
@@ -197,7 +186,7 @@ int main(void)
 	  memset(&rxData_2 , 0 , sizeof(RxData));
 
 	  ret1 = HAL_I2C_Master_Receive(&hi2c1, slaveADDR, (uint8_t*)&rxData, sizeof(RxData) , HAL_MAX_DELAY);
-	  ret_3 = HAL_I2C_Master_Receive(&hi2c1, slaveADDR_2, (uint8_t*)&rxData_2, sizeof(rxData_2) , HAL_MAX_DELAY);// angle sensor
+	  ret2 = HAL_I2C_Master_Receive(&hi2c1, slaveADDR_2, (uint8_t*)&rxData_2, sizeof(rxData_2) , HAL_MAX_DELAY);// angle sensor
 
 	  //===================================================================***For Front sensor***
 
@@ -227,7 +216,7 @@ int main(void)
       }
 
       //=========================================================================***For Angle sensor***
-      if ( ret_3 != HAL_OK )
+      if ( ret2 != HAL_OK )
       	        {
       	          printf("Error Rx_3\r\n");
       	        }
@@ -417,53 +406,6 @@ static void MX_I2C1_Init(void)
 
 }
 
-/**
-  * @brief I2C2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C2_Init(void)
-{
-
-  /* USER CODE BEGIN I2C2_Init 0 */
-
-  /* USER CODE END I2C2_Init 0 */
-
-  /* USER CODE BEGIN I2C2_Init 1 */
-
-  /* USER CODE END I2C2_Init 1 */
-  hi2c2.Instance = I2C2;
-  hi2c2.Init.Timing = 0x60404E72;
-  hi2c2.Init.OwnAddress1 = 0;
-  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c2.Init.OwnAddress2 = 0;
-  hi2c2.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Analogue filter
-  */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c2, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c2, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C2_Init 2 */
-
-  /* USER CODE END I2C2_Init 2 */
-
-}
 
 /**
   * @brief USART3 Initialization Function
