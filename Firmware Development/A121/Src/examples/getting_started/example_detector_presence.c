@@ -308,12 +308,7 @@ static bool do_sensor_calibration(acc_sensor_t *sensor, acc_cal_result_t *cal_re
 
 static void print_result(acc_detector_presence_result_t result)
 {
-	if (((int)result.presence_distance * 1000.0f == 2942.0f || (int)result.presence_distance * 1000.0f == 2762.0f) && GREATER_DISTANCE_APPEARED)
-	{
-		result.presence_distance = 0;
-		printf("No motion\n");
-	}
-	else if (result.presence_detected)
+	if (result.presence_detected)
 	{
 		// Score and distance are multiplied by 1000 to avoid printing floats
 		printf("Intra presence score: %d, Inter presence score: %d, Distance (mm): %d\n",
@@ -326,15 +321,6 @@ static void print_result(acc_detector_presence_result_t result)
 	{
 		printf("No motion\n");
 	}
-	if ((int)result.presence_distance * 1000.0f >=5000)
-	{
-		one_time_distance = (int)result.presence_distance;
-		GREATER_DISTANCE_APPEARED = 1;
-	}
-	if((int)result.presence_distance * 1000.0f <=3000)
-	{
-		GREATER_DISTANCE_APPEARED = 0;
-	}
 
 }
 
@@ -344,22 +330,22 @@ static void set_config(acc_detector_presence_config_t *presence_config, presence
 	switch (preset)
 	{
 		case PRESENCE_PRESET_CONFIG_NONE:
-			acc_detector_presence_config_start_set(presence_config, 0.6f);
+			acc_detector_presence_config_start_set(presence_config, 0.64f);
 			acc_detector_presence_config_end_set(presence_config, 7.5f);
 			acc_detector_presence_config_auto_step_length_set(presence_config, false); //for auto selection of step size, set it to true
 			acc_detector_presence_config_auto_profile_set(presence_config, false);// for auto selection of set size based on the starting value of start set , higher profile lead to good SNR but bad resolution
 			acc_detector_presence_config_inter_frame_idle_state_set(presence_config, ACC_CONFIG_IDLE_STATE_DEEP_SLEEP);//The 'inter-frame idle state' is the state the sensor idles in between each frame.
-			acc_detector_presence_config_hwaas_set(presence_config, 35);// hardware accelerated average samples (HWAAS) now 8 samples is being used to find the average
+			acc_detector_presence_config_hwaas_set(presence_config, 64);// hardware accelerated average samples (HWAAS) now 8 samples is being used to find the average
 			acc_detector_presence_config_sweeps_per_frame_set(presence_config, 16);//Set the number of sweeps per frame
-			acc_detector_presence_config_frame_rate_set(presence_config, 12.0f);//Set the frame rate
+			acc_detector_presence_config_frame_rate_set(presence_config, 10.0f);//Set the frame rate
 			acc_detector_presence_config_frame_rate_app_driven_set(presence_config, false);//Set to false b/c the application isn't maintaining the requested frame rate
 			acc_detector_presence_config_reset_filters_on_prepare_set(presence_config, true);
 
 			acc_detector_presence_config_intra_detection_set(presence_config, true);// Set intra-frame presence detection is used for detecting faster movements inside frames
 			acc_detector_presence_config_intra_detection_threshold_set(presence_config, 1.3f);//detection threshold for the intra-frame presence detection
-			acc_detector_presence_config_intra_frame_time_const_set(presence_config, 0.15f);//Set the time constant for the depthwise filtering in the intra-frame part
-			acc_detector_presence_config_intra_output_time_const_set(presence_config, 0.3f);//brief Set the time constant for the output in the intra-frame part
-//			acc_detector_presence_config_inter_detection_set(presence_config, true);//inter-frame presence detection This is used for detecting slower movements between frames
+			acc_detector_presence_config_intra_frame_time_const_set(presence_config, 0.20f);//Set the time constant for the depthwise filtering in the intra-frame part
+			acc_detector_presence_config_intra_output_time_const_set(presence_config, 0.5f);//brief Set the time constant for the output in the intra-frame part
+			acc_detector_presence_config_inter_detection_set(presence_config, false);//inter-frame presence detection This is used for detecting slower movements between frames
 //			acc_detector_presence_config_inter_detection_threshold_set(presence_config, 1.0f);//inter detection is used for samll detection such as person is sitting on the sofa or human breathing
 //			acc_detector_presence_config_inter_frame_deviation_time_const_set(presence_config, 0.5f);//Set the time constant of the low pass filter for the inter-frame deviation between fast and slow
 //			acc_detector_presence_config_inter_frame_fast_cutoff_set(presence_config, 6.0f);//Set the cutoff frequency of the low pass filter for the fast filtered absolute sweep meanNo filtering is applied if the cutoff is set over half the frame rate (Nyquist limit)
