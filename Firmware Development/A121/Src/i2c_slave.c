@@ -13,7 +13,8 @@ extern I2C_HandleTypeDef hi2c2;
 extern volatile float speed;
 extern volatile int32_t max_magnitude_index;
 extern volatile uint8_t numDistances;
-extern volatile float distances[10];
+//extern volatile float distances[10];
+volatile float distances[10];
 
 typedef struct
 {

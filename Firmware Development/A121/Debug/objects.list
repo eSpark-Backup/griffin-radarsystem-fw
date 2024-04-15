@@ -22,6 +22,7 @@
 "./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o"
 "./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o"
 "./Src/algorithms/acc_algorithm.o"
+"./Src/examples/getting_started/example_detector_presence.o"
 "./Src/examples/helper/acc_control_helper.o"
 "./Src/examples/helper/acc_processing_helpers.o"
 "./Src/i2c_slave.o"
@@ -37,5 +38,4 @@
 "./Src/integration/acc_integration_stm32.o"
 "./Src/integration/acc_wrap_printf.o"
 "./Src/integration/printf.o"
-"./Src/use_cases/example_apps/example_surface_velocity.o"
 "./Startup/startup_stm32l431cbyx.o"

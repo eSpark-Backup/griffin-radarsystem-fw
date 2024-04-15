@@ -24,9 +24,9 @@ C_DEPS :=
 SUBDIRS := \
 Drivers/STM32L4xx_HAL_Driver/Src \
 Src/algorithms \
+Src/examples/getting_started \
 Src/examples/helper \
 Src \
 Src/integration \
-Src/use_cases/example_apps \
 Startup \
 

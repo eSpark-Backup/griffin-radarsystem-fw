@@ -19,7 +19,14 @@
 #include "acc_sensor.h"
 #include "acc_version.h"
 
+#include "i2c_slave.h"
 
+extern I2C_HandleTypeDef hi2c2;
+volatile float speed;
+volatile int32_t max_magnitude_index;
+volatile acc_detector_distance_result_t result;
+volatile uint8_t numDistances;
+volatile float distances[ACC_DETECTOR_DISTANCE_RESULT_MAX_NUM_DISTANCES];
 /** \example example_detector_distance.c
  * @brief This is an example on how the Detector Distance API can be used
  * @n
@@ -128,7 +135,7 @@ int acconeer_main(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 
-	set_config(resources.config, DISTANCE_PRESET_CONFIG_BALANCED);
+	set_config(resources.config, DISTANCE_PRESET_CONFIG_NONE);
 
 	if (!initialize_detector_resources(&resources))
 	{
@@ -240,9 +247,19 @@ static void set_config(acc_detector_distance_config_t *detector_config, distance
 	switch (preset)
 	{
 		case DISTANCE_PRESET_CONFIG_NONE:
+			acc_detector_distance_config_start_set(detector_config, 0.25f);
+			acc_detector_distance_config_end_set(detector_config, 20.0f);
+			acc_detector_distance_config_max_step_length_set(detector_config, 0);//it was 2U, step size depend upon the profile when set to "0"
+			acc_detector_distance_config_max_profile_set(detector_config, ACC_CONFIG_PROFILE_5);// high profile give good SNR but Bad resolution
+			acc_detector_distance_config_reflector_shape_set(detector_config, ACC_DETECTOR_DISTANCE_REFLECTOR_SHAPE_GENERIC);// this is for general shape obstical it can be irregular rough surface or plane as well
+			acc_detector_distance_config_peak_sorting_set(detector_config, ACC_DETECTOR_DISTANCE_PEAK_SORTING_STRONGEST);//ascending or descending sorting order
+			acc_detector_distance_config_threshold_method_set(detector_config, ACC_DETECTOR_DISTANCE_THRESHOLD_METHOD_CFAR);
+			acc_detector_distance_config_num_frames_recorded_threshold_set(detector_config, 100U);
+			acc_detector_distance_config_threshold_sensitivity_set(detector_config, 0.5f);
+			acc_detector_distance_config_signal_quality_set(detector_config, 20.0f);//high quality mean higher SNR and high power consumption
+			acc_detector_distance_config_close_range_leakage_cancellation_set(detector_config, false);
 			// Add configuration of the detector here
 			break;
-
 		case DISTANCE_PRESET_CONFIG_BALANCED:
 			acc_detector_distance_config_start_set(detector_config, 0.25f);
 			acc_detector_distance_config_end_set(detector_config, 3.0f);
